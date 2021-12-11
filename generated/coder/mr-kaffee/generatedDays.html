@@ -276,6 +276,29 @@
 </li>
 </ul>
 </li>
+<li><a href="#_day_10_rust">Day 10: rust</a>
+<ul class="sectlevel3">
+<li><a href="#_day_10_syntax_scoring">Day 10: Syntax Scoring</a>
+<ul class="sectlevel4">
+<li><a href="#_part_1_8">Part 1</a></li>
+<li><a href="#_part_2_8">Part 2</a></li>
+<li><a href="#_tests_9">Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_11_rust">Day 11: rust</a>
+<ul class="sectlevel3">
+<li><a href="#_day_11_dumbo_octopus">Day 11: Dumbo Octopus</a>
+<ul class="sectlevel4">
+<li><a href="#_part_1_9">Part 1</a></li>
+<li><a href="#_part_2_9">Part 2</a></li>
+<li><a href="#_tests_10">Tests</a></li>
+<li><a href="#_today_i_learned_6">Today I learned</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -470,7 +493,6 @@ mod tests {
 pub fn parse(content: &amp;str) -&gt; Vec&lt;usize&gt; {
     content
         .lines()
-        .into_iter()
         .map(|line| line.parse().expect("Could not parse line"))
         .collect()
 }</code></pre>
@@ -795,11 +817,7 @@ pub fn calc_position_with_aim(input: &amp;str) -&gt; (isize, isize, isize) {
 <pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// parse input into integers
 /// return bit-length of values in addition
 pub fn parse(input: &amp;str) -&gt; (Vec&lt;usize&gt;, usize) {
-    let len = input
-        .lines()
-        .map(|line| line.len())
-        .next()
-        .expect("No lines");
+    let len = input.lines().next().expect("No lines").len();
     let values = input
         .lines()
         .map(|line| usize::from_str_radix(line, 2).expect("Could not parse line"))
@@ -1013,7 +1031,7 @@ impl Board {
     /// dimension of the boad
     pub const N: usize = 5;
 
-    /// crate new board from data vector
+    /// create new board from data vector
     pub fn new(data: Vec&lt;usize&gt;) -&gt; Self {
         if data.len() != Self::N * Self::N {
             panic!("Illegal data length: {}", data.len());
@@ -1834,8 +1852,7 @@ pub fn parse(content: &amp;str) -&gt; Vec&lt;(Vec&lt;usize&gt;, Vec&lt;usize&gt;
                             // convert pattern to usize
                             pattern
                                 .chars()
-                                .map(|char| 1 &lt;&lt; (char as usize - 'a' as usize))
-                                .fold(0, |bits, bit| bits | bit)
+                                .fold(0, |bits, c| bits | 1 &lt;&lt; (c as usize - 'a' as usize))
                         })
                         .collect::&lt;Vec&lt;_&gt;&gt;() // patterns / outputs as usize
                 })
@@ -1920,31 +1937,25 @@ pub fn decode(patterns: &amp;[usize], outputs: &amp;[usize]) -&gt; usize {
     // 1 -&gt; _ _ c _ _ f _ -&gt; set bits match 0b0100100
     // 7 -&gt; a _ c _ _ f _ -&gt; set bits match 0b0100101
     // 4 -&gt; _ b c d _ f _ -&gt; set bits match 0b0101110
-    let pos_masks = HashMap::from([(2, 0b0100100), (3, 0b0100101), (4, 0b0101110)]);
     // 2 -&gt; a _ c d e _ g
     // 3 -&gt; a _ c d _ f g
     // 5 -&gt; a b _ d _ f g -&gt; unset bits match 0b0110110
     // 0 -&gt; a b c _ e f g
     // 6 -&gt; a b _ d e f g
     // 9 -&gt; a b c d _ f g -&gt; unset bits match 0b0011100
-    let neg_masks = HashMap::from([
-        (2, !0b0100100),
-        (3, !0b0100101),
-        (4, !0b0101110),
-        (5, 0b0110110),
-        (6, 0b0011100),
+    let masks = HashMap::from([
+        (2, (0b0100100, !0b0100100)),
+        (3, (0b0100101, !0b0100101)),
+        (4, (0b0101110, !0b0101110)),
+        (5, (0b1111111, 0b0110110)),
+        (6, (0b1111111, 0b0011100)),
     ]);
 
     // for each pattern, reduce map by impossible bits
     for pattern in patterns {
-        if let Some(p) = pos_masks.get(&amp;pattern.count_ones()) {
-            for wire in (0..7).filter(|wire| (pattern &gt;&gt; wire) &amp; 1 == 1) {
-                map[wire] &amp;= p;
-            }
-        }
-        if let Some(p) = neg_masks.get(&amp;pattern.count_ones()) {
-            for wire in (0..7).filter(|wire| (pattern &gt;&gt; wire) &amp; 1 == 0) {
-                map[wire] &amp;= p;
+        if let Some((p, n)) = masks.get(&amp;pattern.count_ones()) {
+            for wire in 0..7 {
+                map[wire] &amp;= if (pattern &gt;&gt; wire) &amp; 1 == 1 { p } else { n };
             }
         }
     }
@@ -1966,8 +1977,7 @@ pub fn decode(patterns: &amp;[usize], outputs: &amp;[usize]) -&gt; usize {
             // map wires to segments
             (0..7)
                 .filter(|wire| (output &gt;&gt; wire) &amp; 1 == 1)
-                .map(|wire| map[wire])
-                .fold(0, |digit, bit| digit | bit)
+                .fold(0, |digit, wire| digit | map[wire])
         })
         .fold(0, |result, digit| {
             // calculate output from digits
@@ -2130,13 +2140,13 @@ gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
 /// assert_eq!((1, vec![0,1]), parse("0\n1"));
 /// ```
 pub fn parse(content: &amp;str) -&gt; (usize, Vec&lt;usize&gt;) {
-    let width = content.lines().next().expect("No lines").len();
-    let numbers = content
+    let w = content.lines().next().expect("No lines").len();
+    let grid = content
         .chars()
         .filter(|c| c.is_ascii_digit())
         .map(|c| (c as usize - '0' as usize))
         .collect();
-    (width, numbers)
+    (w, grid)
 }</code></pre>
 </div>
 </div>
@@ -2146,17 +2156,16 @@ pub fn parse(content: &amp;str) -&gt; (usize, Vec&lt;usize&gt;) {
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// find all elements for which all adjacents have higher values, sum their values incremented by 1
-pub fn solution_1(width: usize, numbers: &amp;[usize]) -&gt; usize {
-    let height = numbers.len() / width;
-    (0..numbers.len())
-        .map(|idx| (idx % width, idx / width, numbers[idx] + 1))
-        .filter(|(x, y, _)| {
-            (*x == 0 || numbers[x - 1 + width * y] &gt; numbers[x + width * y])
-                &amp;&amp; (*x == width - 1 || numbers[x + 1 + width * y] &gt; numbers[x + width * y])
-                &amp;&amp; (*y == 0 || numbers[x + width * (y - 1)] &gt; numbers[x + width * y])
-                &amp;&amp; (*y == height - 1 || numbers[x + width * (y + 1)] &gt; numbers[x + width * y])
+pub fn solution_1(w: usize, grid: &amp;[usize]) -&gt; usize {
+    (0..grid.len())
+        .map(|idx| (idx % w, idx / w))
+        .filter(|(x, y)| {
+            (*x == 0 || grid[x - 1 + w * y] &gt; grid[x + w * y])
+                &amp;&amp; (*x == w - 1 || grid[x + 1 + w * y] &gt; grid[x + w * y])
+                &amp;&amp; (*y == 0 || grid[x + w * (y - 1)] &gt; grid[x + w * y])
+                &amp;&amp; (*y == grid.len() / w - 1 || grid[x + w * (y + 1)] &gt; grid[x + w * y])
         })
-        .fold(0, |sum, (_, _, number)| sum + number)
+        .fold(0, |sum, (x, y)| sum + grid[x + w * y] + 1)
 }</code></pre>
 </div>
 </div>
@@ -2178,39 +2187,28 @@ pub fn solution_1(width: usize, numbers: &amp;[usize]) -&gt; usize {
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// get the basin sizes of the basins the given coordinates belong to with a breadth first traversal
-pub fn get_basin_size(width: usize, numbers: &amp;[usize], x: usize, y: usize) -&gt; usize {
-    // markers for seen coordinates
-    let mut seen = vec![false; numbers.len()];
-    // queue for breadth first traversal
+pub fn get_basin_size(w: usize, grid: &amp;[usize], x: usize, y: usize) -&gt; usize {
+    let mut unknown = vec![true; grid.len()];
     let mut queue = VecDeque::new();
 
-    // initialize
-    seen[x + width * y] = true;
+    unknown[x + w * y] = false;
     queue.push_back((x as isize, y as isize));
     let mut count = 0;
 
-    // height and width of the grid as signed integers
-    let height = (numbers.len() / width) as isize;
-    let width = width as isize;
+    let h = (grid.len() / w) as isize;
+    let w = w as isize;
 
     // breadth first traversal
-    while !queue.is_empty() {
-        let (x, y) = queue.pop_front().unwrap();
+    while let Some((x, y)) = queue.pop_front() {
         count += 1;
 
-        for (dx, dy) in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
-            // adjacent coordinates
-            let x_a = x + dx;
-            let y_a = y + dy;
-            if x_a &gt;= 0
-                &amp;&amp; x_a &lt; width
-                &amp;&amp; y_a &gt;= 0
-                &amp;&amp; y_a &lt; height
-                &amp;&amp; !seen[(x_a + width * y_a) as usize]
-                &amp;&amp; numbers[(x_a + width * y_a) as usize] != 9
+        for (x_a, y_a) in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)] {
+            if ((0..w).contains(&amp;x_a) &amp;&amp; (0..h).contains(&amp;y_a))
+                &amp;&amp; unknown[(x_a + w * y_a) as usize]
+                &amp;&amp; grid[(x_a + w * y_a) as usize] != 9
             {
-                // if adjacent coordinates in grid, not yet seen and not 9, mark seen and add to queue
-                seen[(x_a + width * y_a) as usize] = true;
+                // if adjacent is within grid, is not yet seen and has a value != 9, mark known and add to queue
+                unknown[(x_a + w * y_a) as usize] = false;
                 queue.push_back((x_a, y_a));
             }
         }
@@ -2220,25 +2218,17 @@ pub fn get_basin_size(width: usize, numbers: &amp;[usize], x: usize, y: usize) -
 }
 
 /// get the product of the sizes of the (at most) three biggest basins
-pub fn solution_2(width: usize, numbers: &amp;[usize]) -&gt; usize {
-    // height of the grid
-    let height = numbers.len() / width;
-
-    // determine low points
-    let lows = (0..numbers.len())
-        .map(|idx| (idx % width, idx / width))
+pub fn solution_2(w: usize, grid: &amp;[usize]) -&gt; usize {
+    // determine low points and calculate basin sizes for those
+    let mut basins = (0..grid.len())
+        .map(|idx| (idx % w, idx / w))
         .filter(|(x, y)| {
-            (*x == 0 || numbers[x - 1 + width * y] &gt; numbers[x + width * y])
-                &amp;&amp; (*x == width - 1 || numbers[x + 1 + width * y] &gt; numbers[x + width * y])
-                &amp;&amp; (*y == 0 || numbers[x + width * (y - 1)] &gt; numbers[x + width * y])
-                &amp;&amp; (*y == height - 1 || numbers[x + width * (y + 1)] &gt; numbers[x + width * y])
+            (*x == 0 || grid[x - 1 + w * y] &gt; grid[x + w * y])
+                &amp;&amp; (*x == w - 1 || grid[x + 1 + w * y] &gt; grid[x + w * y])
+                &amp;&amp; (*y == 0 || grid[x + w * (y - 1)] &gt; grid[x + w * y])
+                &amp;&amp; (*y == grid.len() / w - 1 || grid[x + w * (y + 1)] &gt; grid[x + w * y])
         })
-        .collect::&lt;Vec&lt;_&gt;&gt;();
-
-    // determine basin sizes
-    let mut basins = lows
-        .iter()
-        .map(|(x, y)| get_basin_size(width, numbers, *x, *y))
+        .map(|(x, y)| get_basin_size(w, grid, x, y))
         .collect::&lt;Vec&lt;_&gt;&gt;();
 
     // sort basin sizes
@@ -2258,40 +2248,33 @@ pub fn solution_2(width: usize, numbers: &amp;[usize]) -&gt; usize {
 mod tests {
     use super::*;
 
-    const CONTENT: &amp;str = "2199943210
-3987894921
-9856789892
-8767896789
-9899965678";
+    const CONTENT: &amp;str = "2199943210\n3987894921\n9856789892\n8767896789\n9899965678";
+    const W: usize = 10;
+    const GRID: &amp;'static [usize] = &amp;[
+        2, 1, 9, 9, 9, 4, 3, 2, 1, 0, 3, 9, 8, 7, 8, 9, 4, 9, 2, 1, 9, 8, 5, 6, 7, 8, 9, 8, 9, 2,
+        8, 7, 6, 7, 8, 9, 6, 7, 8, 9, 9, 8, 9, 9, 9, 6, 5, 6, 7, 8,
+    ];
 
     #[test]
     fn test_parse() {
-        let (width, numbers) = parse(CONTENT);
-        assert_eq!(10, width);
-        assert_eq!(50, numbers.len());
+        assert_eq!((W, GRID.to_vec()), parse(CONTENT));
     }
 
     #[test]
     fn test_solution_1() {
-        let (width, numbers) = parse(CONTENT);
-        let risk = solution_1(width, &amp;numbers);
-        assert_eq!(15, risk);
+        assert_eq!(15, solution_1(W, GRID));
     }
 
     #[test]
     fn test_get_basin_size() {
-        let (width, numbers) = parse(CONTENT);
-
-        assert_eq!(3, get_basin_size(width, &amp;numbers, 1, 0));
-        assert_eq!(9, get_basin_size(width, &amp;numbers, width - 1, 0));
-        assert_eq!(14, get_basin_size(width, &amp;numbers, 2, 2));
-        assert_eq!(9, get_basin_size(width, &amp;numbers, 6, 4));
+        for (exp, (x, y)) in [(3, (1, 0)), (9, (9, 0)), (14, (2, 2)), (9, (6, 4))] {
+            assert_eq!(exp, get_basin_size(W, GRID, x, y));
+        }
     }
 
     #[test]
     fn test_solution_2() {
-        let (width, numbers) = parse(CONTENT);
-        assert_eq!(1_134, solution_2(width, &amp;numbers));
+        assert_eq!(1_134, solution_2(W, GRID));
     }
 }</code></pre>
 </div>
@@ -2301,6 +2284,437 @@ mod tests {
 <h5 id="_today_i_learned_5"><a class="anchor" href="#_today_i_learned_5"></a><a class="link" href="#_today_i_learned_5">Today I learned</a></h5>
 <div class="paragraph">
 <p>Read the puzzle description carefully (ha, not really a new learning) and continue to test (I think we had that before).</p>
+</div>
+<a id="day10" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_10_rust"><a class="anchor" href="#_day_10_rust"></a><a class="link" href="#_day_10_rust">Day 10: rust</a></h3>
+<div class="sect3">
+<h4 id="_day_10_syntax_scoring"><a class="anchor" href="#_day_10_syntax_scoring"></a><a class="link" href="#_day_10_syntax_scoring">Day 10: Syntax Scoring</a></h4>
+<div class="paragraph">
+<p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/10">AoC|2021|10</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_part_1_8"><a class="anchor" href="#_part_1_8"></a><a class="link" href="#_part_1_8">Part 1</a></h5>
+<div class="paragraph">
+<p>Solution idea is to parse the characters one by one. If they are open delimiters, push the corresponding closing delimiter to a stack. If they are closing delimites, pop values from the stack and compare them to the current character.</p>
+</div>
+<div class="paragraph">
+<p>If a comparison fails, an illegal character is found and its score is returned. Then the sum over the scores is taken.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// return illegal char's score if any in as ``Some`` value, otherwise ``None``
+pub fn get_illegal_score(line: &amp;str) -&gt; Option&lt;usize&gt; {
+    let mut stack = Vec::new();
+    for c in line.chars() {
+        match c {
+            '(' =&gt; stack.push(')'),
+            '[' =&gt; stack.push(']'),
+            '{' =&gt; stack.push('}'),
+            '&lt;' =&gt; stack.push('&gt;'),
+            ')' if c != stack.pop().unwrap() =&gt; return Some(3),
+            ']' if c != stack.pop().unwrap() =&gt; return Some(57),
+            '}' if c != stack.pop().unwrap() =&gt; return Some(1_197),
+            '&gt;' if c != stack.pop().unwrap() =&gt; return Some(25_137),
+            _ =&gt; {} // nothing here
+        }
+    }
+    None
+}
+
+/// Calculate sum of scores of illegal chars
+pub fn solution_1(lines: &amp;[&amp;str]) -&gt; usize {
+    lines
+        .iter()
+        .filter_map(|line| get_illegal_score(line))
+        .sum()
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_part_2_8"><a class="anchor" href="#_part_2_8"></a><a class="link" href="#_part_2_8">Part 2</a></h5>
+<div class="paragraph">
+<p>Same idea as for part 1. Now discard lines where comparisons fail. What remains in the stack once a line is processed are the characters required to repair the line.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// get the repair score if the line is incomplete as a ``Some`` value, otherwise return ``None``
+pub fn get_repair_score(line: &amp;str) -&gt; Option&lt;usize&gt; {
+    let mut stack = Vec::new();
+    for c in line.chars() {
+        match c {
+            '(' =&gt; stack.push(')'),
+            '[' =&gt; stack.push(']'),
+            '{' =&gt; stack.push('}'),
+            '&lt;' =&gt; stack.push('&gt;'),
+            ')' | '&gt;' | '}' | ']' if c != stack.pop().unwrap() =&gt; return None,
+            _ =&gt; {} // nothing here
+        }
+    }
+
+    Some(stack.iter().rev().fold(0, |score, c| {
+        score * 5
+            + match c {
+                ')' =&gt; 1,
+                ']' =&gt; 2,
+                '}' =&gt; 3,
+                '&gt;' =&gt; 4,
+                _ =&gt; unreachable!(),
+            }
+    }))
+}
+
+/// get the middle repair score
+pub fn solution_2(lines: &amp;[&amp;str]) -&gt; usize {
+    let mut scores = lines
+        .iter()
+        .filter_map(|line| get_repair_score(line))
+        .collect::&lt;Vec&lt;_&gt;&gt;();
+    scores.sort_unstable();
+    scores[scores.len() / 2]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests_9"><a class="anchor" href="#_tests_9"></a><a class="link" href="#_tests_9">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const CONTENT: &amp;str = "[({(&lt;(())[]&gt;[[{[]{&lt;()&lt;&gt;&gt;
+[(()[&lt;&gt;])]({[&lt;{&lt;&lt;[]&gt;&gt;(
+{([(&lt;{}[&lt;&gt;[]}&gt;{[]{[(&lt;()&gt;
+(((({&lt;&gt;}&lt;{&lt;{&lt;&gt;}{[]{[]{}
+[[&lt;[([]))&lt;([[{}[[()]]]
+[{[{({}]{}}([{[{{{}}([]
+{&lt;[[]]&gt;}&lt;{[{[{[]{()[[[]
+[&lt;(&lt;(&lt;(&lt;{}))&gt;&lt;([]([]()
+&lt;{([([[(&lt;&gt;()){}]&gt;(&lt;&lt;{{
+&lt;{([{{}}[&lt;[[[&lt;&gt;{}]]]&gt;[]]";
+
+    #[test]
+    fn test_find_illegal_char() {
+        let lines = parse(CONTENT);
+        assert_eq!(
+            vec![
+                None,
+                None,
+                Some(1197),
+                None,
+                Some(3),
+                Some(57),
+                None,
+                Some(3),
+                Some(25137),
+                None
+            ],
+            lines
+                .iter()
+                .map(|line| get_illegal_score(line))
+                .collect::&lt;Vec&lt;_&gt;&gt;()
+        );
+    }
+
+    #[test]
+    fn test_solution_1() {
+        let lines = parse(CONTENT);
+        assert_eq!(26_397, solution_1(&amp;lines));
+    }
+
+    #[test]
+    fn test_get_repair_score() {
+        let lines = parse(CONTENT);
+        assert_eq!(
+            vec![
+                Some(288957),
+                Some(5566),
+                None,
+                Some(1480781),
+                None,
+                None,
+                Some(995444),
+                None,
+                None,
+                Some(294)
+            ],
+            lines
+                .iter()
+                .map(|line| get_repair_score(line))
+                .collect::&lt;Vec&lt;_&gt;&gt;()
+        );
+    }
+
+    #[test]
+    fn test_solution_2() {
+        let lines = parse(CONTENT);
+        assert_eq!(288_957, solution_2(&amp;lines));
+    }
+}</code></pre>
+</div>
+</div>
+<a id="day11" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_11_rust"><a class="anchor" href="#_day_11_rust"></a><a class="link" href="#_day_11_rust">Day 11: rust</a></h3>
+<div class="sect3">
+<h4 id="_day_11_dumbo_octopus"><a class="anchor" href="#_day_11_dumbo_octopus"></a><a class="link" href="#_day_11_dumbo_octopus">Day 11: Dumbo Octopus</a></h4>
+<div class="paragraph">
+<p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/11">AoC|2021|11</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_part_1_9"><a class="anchor" href="#_part_1_9"></a><a class="link" href="#_part_1_9">Part 1</a></h5>
+<div class="paragraph">
+<p>Parse the input into a flat list of integers</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// parse energy levels
+///
+/// # Panics
+/// if number of energy levels parsed is not [N]^2
+pub fn parse(content: &amp;str) -&gt; Vec&lt;usize&gt; {
+    let energies = content
+        .chars()
+        .filter(char::is_ascii_digit)
+        .map(|c| c as usize - '0' as usize)
+        .collect::&lt;Vec&lt;_&gt;&gt;();
+    assert_eq!((N * N) as usize, energies.len(), "Bad length");
+    energies
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In each update step, first increment all energy levels and reset them to 0 if they exceed 9. All indices for reset entries (octopus flashed) are added to a stack.</p>
+</div>
+<div class="paragraph">
+<p>Then do a depth first traversal (breadth first would work just as well):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>pop elements off the stack while it is not empty</p>
+</li>
+<li>
+<p>loop through all adjacents skipping adjecents which have already flashed (energy level already reset to 0)</p>
+</li>
+<li>
+<p>increment adjacent&#8217;s energy level</p>
+</li>
+<li>
+<p>if energy level exceeds 9, reset and add index to stack</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// do an update step on the energy levels
+///
+/// return the count of flashes in that step
+pub fn step(energies: &amp;mut [usize]) -&gt; usize {
+    // flashing stack
+    let mut stack = Vec::new();
+
+    // increase all elements by one
+    for k in 0..energies.len() {
+        energies[k] = energies[k] + 1;
+        if energies[k] &gt; FLASH_THRESHOLD {
+            // flashed -&gt; reset, add index to stack
+            energies[k] = 0;
+            stack.push((k % N, k / N));
+        }
+    }
+
+    // depth first traversal to determine all flashes
+    let mut flash_count = 0;
+    while let Some((x, y)) = stack.pop() {
+        flash_count += 1;
+
+        // loop over adjacent entries
+        for (x_a, y_a) in [
+            (x + 1, y),
+            (x + 1, y + 1),
+            (x, y + 1),
+            (x.wrapping_sub(1), y + 1),
+            (x.wrapping_sub(1), y),
+            (x.wrapping_sub(1), y.wrapping_sub(1)),
+            (x, y.wrapping_sub(1)),
+            (x + 1, y.wrapping_sub(1)),
+        ] {
+            if x_a &gt;= N || y_a &gt;= N {
+                // out of bounds
+                continue;
+            }
+
+            // flat index
+            let k_a = (x_a + N * y_a) as usize;
+            if energies[k_a] == 0 {
+                // already flashed
+                continue;
+            }
+
+            // not flashed yet, increment
+            energies[k_a] = energies[k_a] + 1;
+            if energies[k_a] &gt; FLASH_THRESHOLD {
+                // flashed -&gt; reset, add index to stack
+                energies[k_a] = 0;
+                stack.push((x_a, y_a));
+            }
+        }
+    }
+
+    flash_count
+}
+
+pub const ROUNDS: usize = 100;
+
+/// perform [ROUNDS] update steps and return total count of flashes
+pub fn solution_1(energies: &amp;[usize]) -&gt; usize {
+    // work on my own copy of the grid
+    let mut energies = energies.to_owned();
+    (0..ROUNDS).map(|_| step(&amp;mut energies)).sum()
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_part_2_9"><a class="anchor" href="#_part_2_9"></a><a class="link" href="#_part_2_9">Part 2</a></h5>
+<div class="paragraph">
+<p>Perform update steps until all 100 octopuses flash at the same time. Could have re-used the updated grid from part 1, but the solution is fast enough to re-do the first 100 steps ;)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// perform update steps until all octopuses flash at the same time
+///
+/// return the first step when this occurs.
+pub fn solution_2(energies: &amp;[usize]) -&gt; usize {
+    // work on my own copy of the grid
+    let mut energies = energies.to_owned();
+    let mut rounds = 1; // one based counting
+    while step(&amp;mut energies) &lt; N * N {
+        rounds += 1;
+    }
+    rounds
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests_10"><a class="anchor" href="#_tests_10"></a><a class="link" href="#_tests_10">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const CONTENT: &amp;str = "5483143223
+2745854711
+5264556173
+6141336146
+6357385478
+4167524645
+2176841721
+6882881134
+4846848554
+5283751526";
+
+    const ENERGIES: &amp;'static [usize] = &amp;[
+        5, 4, 8, 3, 1, 4, 3, 2, 2, 3, 2, 7, 4, 5, 8, 5, 4, 7, 1, 1, 5, 2, 6, 4, 5, 5, 6, 1, 7, 3,
+        6, 1, 4, 1, 3, 3, 6, 1, 4, 6, 6, 3, 5, 7, 3, 8, 5, 4, 7, 8, 4, 1, 6, 7, 5, 2, 4, 6, 4, 5,
+        2, 1, 7, 6, 8, 4, 1, 7, 2, 1, 6, 8, 8, 2, 8, 8, 1, 1, 3, 4, 4, 8, 4, 6, 8, 4, 8, 5, 5, 4,
+        5, 2, 8, 3, 7, 5, 1, 5, 2, 6,
+    ];
+
+    const CONTENT_1: &amp;str = "6594254334
+3856965822
+6375667284
+7252447257
+7468496589
+5278635756
+3287952832
+7993992245
+5957959665
+6394862637";
+
+    const CONTENT_2: &amp;str = "8807476555
+5089087054
+8597889608
+8485769600
+8700908800
+6600088989
+6800005943
+0000007456
+9000000876
+8700006848";
+
+    const CONTENT_10: &amp;str = "0481112976
+0031112009
+0041112504
+0081111406
+0099111306
+0093511233
+0442361130
+5532252350
+0532250600
+0032240000";
+
+    #[test]
+    fn test_parse() {
+        assert_eq!(ENERGIES, parse(CONTENT));
+    }
+
+    #[test]
+    fn test_step() {
+        let mut energies = parse(CONTENT);
+        let energies_1 = parse(CONTENT_1);
+        let energies_2 = parse(CONTENT_2);
+        let energies_10 = parse(CONTENT_10);
+
+        let mut flash_count = 0;
+
+        // one step
+        flash_count += step(&amp;mut energies);
+        assert_eq!(0, flash_count);
+        assert_eq!(energies_1, energies);
+
+        // another step
+        flash_count += step(&amp;mut energies);
+        assert_eq!(35, flash_count);
+        assert_eq!(energies_2, energies);
+
+        // 8 more steps
+        for _ in 2..10 {
+            flash_count += step(&amp;mut energies);
+        }
+        assert_eq!(204, flash_count);
+        assert_eq!(energies_10, energies);
+    }
+
+    #[test]
+    fn test_solution_1() {
+        assert_eq!(1656, solution_1(&amp;parse(CONTENT)));
+    }
+
+    #[test]
+    fn test_solution_2() {
+        assert_eq!(195, solution_2(&amp;parse(CONTENT)));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_today_i_learned_6"><a class="anchor" href="#_today_i_learned_6"></a><a class="link" href="#_today_i_learned_6">Today I learned</a></h5>
+<div class="paragraph">
+<p>In depth first traversal (as well as in breadth first traversal), be careful to not add elements to the stack (or queue) multiple times. In my first approach, I only reset the energy levels when they were popped from the queue. Thus entries could get modified while their indices were in the queue, and indices could be added multiple times. Took a while to sort that out.</p>
 </div>
 </div>
 </div>
