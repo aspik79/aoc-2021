@@ -145,22 +145,22 @@
 <li><a href="#_mr_kaffee">mr-kaffee</a>
 <ul class="sectlevel2">
 <li><a href="#_about_me">About me</a></li>
-<li><a href="#_day_00_ruby">Day 00: ruby</a>
+<li><a href="#_day_00_rust">Day 00: rust</a>
 <ul class="sectlevel3">
 <li><a href="#_day_00_hello_world">Day 00: Hello World</a>
 <ul class="sectlevel4">
-<li><a href="#_solution">Solution</a></li>
-<li><a href="#_test">Test</a></li>
+<li><a href="#_general_structure">General structure</a></li>
+<li><a href="#_run_solutions">Run Solutions</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_day_00_rust">Day 00: rust</a>
+<li><a href="#_day_00_ruby">Day 00: ruby</a>
 <ul class="sectlevel3">
 <li><a href="#_day_00_hello_world_2">Day 00: Hello World</a>
 <ul class="sectlevel4">
-<li><a href="#_general_structure">General structure</a></li>
-<li><a href="#_run_solutions">Run Solutions</a></li>
+<li><a href="#_solution">Solution</a></li>
+<li><a href="#_test">Test</a></li>
 </ul>
 </li>
 </ul>
@@ -176,24 +176,24 @@
 </li>
 </ul>
 </li>
-<li><a href="#_day_02_ruby">Day 02: ruby</a>
+<li><a href="#_day_02_rust">Day 02: rust</a>
 <ul class="sectlevel3">
 <li><a href="#_day_02_dive">Day 02: Dive!</a>
 <ul class="sectlevel4">
 <li><a href="#_part_1_2">Part 1</a></li>
 <li><a href="#_part_2_2">Part 2</a></li>
-<li><a href="#_tests">Tests</a></li>
 <li><a href="#_today_i_learned_2">Today I learned</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_day_02_rust">Day 02: rust</a>
+<li><a href="#_day_02_ruby">Day 02: ruby</a>
 <ul class="sectlevel3">
 <li><a href="#_day_02_dive_2">Day 02: Dive!</a>
 <ul class="sectlevel4">
 <li><a href="#_part_1_3">Part 1</a></li>
 <li><a href="#_part_2_3">Part 2</a></li>
+<li><a href="#_tests">Tests</a></li>
 <li><a href="#_today_i_learned_3">Today I learned</a></li>
 </ul>
 </li>
@@ -248,6 +248,7 @@
 <ul class="sectlevel4">
 <li><a href="#_part_1_5">Part 1</a></li>
 <li><a href="#_part_2_5">Part 2</a></li>
+<li><a href="#_solution_revisited">Solution Revisited</a></li>
 <li><a href="#_tests_6">Tests</a></li>
 </ul>
 </li>
@@ -299,6 +300,49 @@
 </li>
 </ul>
 </li>
+<li><a href="#_day_12_rust">Day 12: rust</a>
+<ul class="sectlevel3">
+<li><a href="#_day_12_passage_pathing">Day 12: Passage Pathing</a>
+<ul class="sectlevel4">
+<li><a href="#_solution_2">Solution</a></li>
+<li><a href="#_tests_11">Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_13_rust">Day 13: rust</a>
+<ul class="sectlevel3">
+<li><a href="#_day_13_transparent_origami">Day 13: Transparent Origami</a>
+<ul class="sectlevel4">
+<li><a href="#_part_1_10">Part 1</a></li>
+<li><a href="#_part_2_10">Part 2</a></li>
+<li><a href="#_tests_12">Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_14_rust">Day 14: rust</a>
+<ul class="sectlevel3">
+<li><a href="#_day_14">Day 14: <em>__</em></a>
+<ul class="sectlevel4">
+<li><a href="#_solution_3">Solution</a></li>
+<li><a href="#_tests_13">Tests</a></li>
+<li><a href="#_today_i_learned_7">Today I learned</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_15_rust">Day 15: rust</a>
+<ul class="sectlevel3">
+<li><a href="#_day_15_chiton">Day 15: Chiton</a>
+<ul class="sectlevel4">
+<li><a href="#_solution_4">Solution</a></li>
+<li><a href="#_tests_14">Tests</a></li>
+<li><a href="#_today_i_learned_8">Today I Learned</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -334,71 +378,9 @@ Strava: <a href="https://www.strava.com/athletes/89256720">Peter Wieland</a></p>
 <a id="day00" />
 </div>
 <div class="sect2">
-<h3 id="_day_00_ruby"><a class="anchor" href="#_day_00_ruby"></a><a class="link" href="#_day_00_ruby">Day 00: ruby</a></h3>
-<div class="sect3">
-<h4 id="_day_00_hello_world"><a class="anchor" href="#_day_00_hello_world"></a><a class="link" href="#_day_00_hello_world">Day 00: Hello World</a></h4>
-<div class="paragraph">
-<p>Maybe I&#8217;ll try out some <a href="https://www.ruby-lang.org/">Ruby</a> this year. At least a hello world is done ;)</p>
-</div>
-<div class="sect4">
-<h5 id="_solution"><a class="anchor" href="#_solution"></a><a class="link" href="#_solution">Solution</a></h5>
-<div class="paragraph">
-<p>The actual solution resides in <code>solution.rb</code></p>
-</div>
-<div class="paragraph">
-<p>It will define classes, methods and similar to calculate the solution, e.g.,</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def say_hello(name = "World")
-  "Hello, #{name}!"
-end</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And a section to run the actual solution and measure time, like</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">if __FILE__ == $0
-  b = Benchmark.measure { puts say_hello }
-  puts "Solved in #{b.real}s"
-end</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The part <code>if <em>FILE</em> == $0</code> is taken from <a href="https://www.ruby-lang.org/en/documentation/quickstart/4/">Ruby in Twenty Minutes</a></p>
-</div>
-<div class="paragraph">
-<p>The solution is executed with <code>ruby solution.rb</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_test"><a class="anchor" href="#_test"></a><a class="link" href="#_test">Test</a></h5>
-<div class="paragraph">
-<p>To test my code, there will be a <code>solution_test.rb</code> file which defines a test class derived from <code>Test::Unit::TestCase</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">class TestSolution &lt; Test::Unit::TestCase
-  def test_say_hello
-    assert_equal "Hello, World!", say_hello
-    assert_equal "Hello, Eric Wastl!", say_hello("Eric Wastl")
-  end
-end</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Tests are executed with <code>ruby solution_test.rb</code></p>
-</div>
-<a id="day00" />
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_day_00_rust"><a class="anchor" href="#_day_00_rust"></a><a class="link" href="#_day_00_rust">Day 00: rust</a></h3>
 <div class="sect3">
-<h4 id="_day_00_hello_world_2"><a class="anchor" href="#_day_00_hello_world_2"></a><a class="link" href="#_day_00_hello_world_2">Day 00: Hello World</a></h4>
+<h4 id="_day_00_hello_world"><a class="anchor" href="#_day_00_hello_world"></a><a class="link" href="#_day_00_hello_world">Day 00: Hello World</a></h4>
 <div class="paragraph">
 <p>I am still undecided what language to use this year.
 I&#8217;ll start with <a href="https://www.rust-lang.org/">Rust</a>.</p>
@@ -470,6 +452,68 @@ mod tests {
 </div>
 <div class="paragraph">
 <p>Run tests with <code>cargo test</code></p>
+</div>
+<a id="day00" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_00_ruby"><a class="anchor" href="#_day_00_ruby"></a><a class="link" href="#_day_00_ruby">Day 00: ruby</a></h3>
+<div class="sect3">
+<h4 id="_day_00_hello_world_2"><a class="anchor" href="#_day_00_hello_world_2"></a><a class="link" href="#_day_00_hello_world_2">Day 00: Hello World</a></h4>
+<div class="paragraph">
+<p>Maybe I&#8217;ll try out some <a href="https://www.ruby-lang.org/">Ruby</a> this year. At least a hello world is done ;)</p>
+</div>
+<div class="sect4">
+<h5 id="_solution"><a class="anchor" href="#_solution"></a><a class="link" href="#_solution">Solution</a></h5>
+<div class="paragraph">
+<p>The actual solution resides in <code>solution.rb</code></p>
+</div>
+<div class="paragraph">
+<p>It will define classes, methods and similar to calculate the solution, e.g.,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def say_hello(name = "World")
+  "Hello, #{name}!"
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And a section to run the actual solution and measure time, like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">if __FILE__ == $0
+  b = Benchmark.measure { puts say_hello }
+  puts "Solved in #{b.real}s"
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The part <code>if <em>FILE</em> == $0</code> is taken from <a href="https://www.ruby-lang.org/en/documentation/quickstart/4/">Ruby in Twenty Minutes</a></p>
+</div>
+<div class="paragraph">
+<p>The solution is executed with <code>ruby solution.rb</code></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_test"><a class="anchor" href="#_test"></a><a class="link" href="#_test">Test</a></h5>
+<div class="paragraph">
+<p>To test my code, there will be a <code>solution_test.rb</code> file which defines a test class derived from <code>Test::Unit::TestCase</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">class TestSolution &lt; Test::Unit::TestCase
+  def test_say_hello
+    assert_equal "Hello, World!", say_hello
+    assert_equal "Hello, Eric Wastl!", say_hello("Eric Wastl")
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tests are executed with <code>ruby solution_test.rb</code></p>
 </div>
 <a id="day01" />
 </div>
@@ -583,103 +627,14 @@ pub fn count_increase_with_offset(data: &amp;[usize], offset: usize) -&gt; usize
 </div>
 </div>
 <div class="sect2">
-<h3 id="_day_02_ruby"><a class="anchor" href="#_day_02_ruby"></a><a class="link" href="#_day_02_ruby">Day 02: ruby</a></h3>
-<div class="sect3">
-<h4 id="_day_02_dive"><a class="anchor" href="#_day_02_dive"></a><a class="link" href="#_day_02_dive">Day 02: Dive!</a></h4>
-<div class="paragraph">
-<p><a href="https://www.ruby-lang.org">Ruby</a> solution to <a href="https://adventofcode.com/2021/day/2">AoC|2021|02</a>.</p>
-</div>
-<div class="sect4">
-<h5 id="_part_1_2"><a class="anchor" href="#_part_1_2"></a><a class="link" href="#_part_1_2">Part 1</a></h5>
-<div class="paragraph">
-<p>Generic function to calculate the position.
-Takes the input string, an initial value and a hash of lambdas updating the position</p>
-</div>
-<div class="paragraph">
-<p>The function iterates through the lines of the <code>input</code>. Each <code>line</code> is split in the command part <code>cmd</code> and the value part <code>v</code> (single space as separator). The command is used to select a lambda from the <code>steps</code> hash which is then called with the accumulator <code>acc</code> and the value <code>v</code> to udpate the accumulator.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def calc_position(input, init, steps)
-  input.split("\n")
-       .map { |line| line.split(' ') }
-       .inject(init) { |acc, cmd| steps[cmd.first].call acc, cmd.last.to_i }
-end</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For part 1, this function is called as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def calc_position_1(input)
-  calc_position(input, [0, 0], {
-    'up' =&gt; -&gt;(acc, v) { [acc[0], acc[1] - v] },
-    'down' =&gt; -&gt;(acc, v) { [acc[0], acc[1] + v] },
-    'forward' =&gt; -&gt;(acc, v) { [acc[0] + v, acc[1]] }
-  })
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_part_2_2"><a class="anchor" href="#_part_2_2"></a><a class="link" href="#_part_2_2">Part 2</a></h5>
-<div class="paragraph">
-<p>For part 2, the aim has to be considered as additional value and the update rules are changed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def calc_position_2(input)
-  calc_position(input, [0, 0, 0], {
-    'up' =&gt; -&gt;(acc, v) { [acc[0], acc[1], acc[2] - v] },
-    'down' =&gt; -&gt;(acc, v) { [acc[0], acc[1], acc[2] + v] },
-    'forward' =&gt; -&gt;(acc, v) { [acc[0] + v, acc[1] + acc[2] * v, acc[2]] }
-  })
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_tests"><a class="anchor" href="#_tests"></a><a class="link" href="#_tests">Tests</a></h5>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">class TestSolution &lt; Test::Unit::TestCase
-  CONTENT = %(forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2).freeze
-
-  def test_calc_position_1
-    assert_equal [15, 10], calc_position_1(CONTENT)
-  end
-
-  def test_calc_position_2
-    assert_equal [15, 60, 10], calc_position_2(CONTENT)
-  end
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_today_i_learned_2"><a class="anchor" href="#_today_i_learned_2"></a><a class="link" href="#_today_i_learned_2">Today I learned</a></h5>
-<div class="paragraph">
-<p>... that I don&#8217;t know how to set up VS Code for decent Ruby development :(</p>
-</div>
-<a id="day02" />
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_day_02_rust"><a class="anchor" href="#_day_02_rust"></a><a class="link" href="#_day_02_rust">Day 02: rust</a></h3>
 <div class="sect3">
-<h4 id="_day_02_dive_2"><a class="anchor" href="#_day_02_dive_2"></a><a class="link" href="#_day_02_dive_2">Day 02: Dive!</a></h4>
+<h4 id="_day_02_dive"><a class="anchor" href="#_day_02_dive"></a><a class="link" href="#_day_02_dive">Day 02: Dive!</a></h4>
 <div class="paragraph">
 <p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/2">AoC|2021|02</a>.</p>
 </div>
 <div class="sect4">
-<h5 id="_part_1_3"><a class="anchor" href="#_part_1_3"></a><a class="link" href="#_part_1_3">Part 1</a></h5>
+<h5 id="_part_1_2"><a class="anchor" href="#_part_1_2"></a><a class="link" href="#_part_1_2">Part 1</a></h5>
 <div class="paragraph">
 <p>The most difficult part today was to parse the input. My rust knowledge obviously is slightly rusty&#8230;&#8203;
 Eventually I created an enum with a <code>parse</code> function as follows:</p>
@@ -763,7 +718,7 @@ pub fn calc_position(input: &amp;str) -&gt; (isize, isize) {
 </div>
 </div>
 <div class="sect4">
-<h5 id="_part_2_3"><a class="anchor" href="#_part_2_3"></a><a class="link" href="#_part_2_3">Part 2</a></h5>
+<h5 id="_part_2_2"><a class="anchor" href="#_part_2_2"></a><a class="link" href="#_part_2_2">Part 2</a></h5>
 <div class="paragraph">
 <p>The second part was an easy extension to the first part. Just add a third accumulator state for the aim (small trap: my horizontal position is called 'x' which is not the same as the 'X' in the puzzle description)</p>
 </div>
@@ -792,9 +747,98 @@ pub fn calc_position_with_aim(input: &amp;str) -&gt; (isize, isize, isize) {
 </div>
 </div>
 <div class="sect4">
-<h5 id="_today_i_learned_3"><a class="anchor" href="#_today_i_learned_3"></a><a class="link" href="#_today_i_learned_3">Today I learned</a></h5>
+<h5 id="_today_i_learned_2"><a class="anchor" href="#_today_i_learned_2"></a><a class="link" href="#_today_i_learned_2">Today I learned</a></h5>
 <div class="paragraph">
 <p>Parsing simple inputs does not require regular expressions &amp; creating enums with parse functions leads to a bit more code but looks much prettier</p>
+</div>
+<a id="day02" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_02_ruby"><a class="anchor" href="#_day_02_ruby"></a><a class="link" href="#_day_02_ruby">Day 02: ruby</a></h3>
+<div class="sect3">
+<h4 id="_day_02_dive_2"><a class="anchor" href="#_day_02_dive_2"></a><a class="link" href="#_day_02_dive_2">Day 02: Dive!</a></h4>
+<div class="paragraph">
+<p><a href="https://www.ruby-lang.org">Ruby</a> solution to <a href="https://adventofcode.com/2021/day/2">AoC|2021|02</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_part_1_3"><a class="anchor" href="#_part_1_3"></a><a class="link" href="#_part_1_3">Part 1</a></h5>
+<div class="paragraph">
+<p>Generic function to calculate the position.
+Takes the input string, an initial value and a hash of lambdas updating the position</p>
+</div>
+<div class="paragraph">
+<p>The function iterates through the lines of the <code>input</code>. Each <code>line</code> is split in the command part <code>cmd</code> and the value part <code>v</code> (single space as separator). The command is used to select a lambda from the <code>steps</code> hash which is then called with the accumulator <code>acc</code> and the value <code>v</code> to udpate the accumulator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def calc_position(input, init, steps)
+  input.split("\n")
+       .map { |line| line.split(' ') }
+       .inject(init) { |acc, cmd| steps[cmd.first].call acc, cmd.last.to_i }
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For part 1, this function is called as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def calc_position_1(input)
+  calc_position(input, [0, 0], {
+    'up' =&gt; -&gt;(acc, v) { [acc[0], acc[1] - v] },
+    'down' =&gt; -&gt;(acc, v) { [acc[0], acc[1] + v] },
+    'forward' =&gt; -&gt;(acc, v) { [acc[0] + v, acc[1]] }
+  })
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_part_2_3"><a class="anchor" href="#_part_2_3"></a><a class="link" href="#_part_2_3">Part 2</a></h5>
+<div class="paragraph">
+<p>For part 2, the aim has to be considered as additional value and the update rules are changed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">def calc_position_2(input)
+  calc_position(input, [0, 0, 0], {
+    'up' =&gt; -&gt;(acc, v) { [acc[0], acc[1], acc[2] - v] },
+    'down' =&gt; -&gt;(acc, v) { [acc[0], acc[1], acc[2] + v] },
+    'forward' =&gt; -&gt;(acc, v) { [acc[0] + v, acc[1] + acc[2] * v, acc[2]] }
+  })
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests"><a class="anchor" href="#_tests"></a><a class="link" href="#_tests">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-ruby" data-lang="ruby">class TestSolution &lt; Test::Unit::TestCase
+  CONTENT = %(forward 5
+down 5
+forward 8
+up 3
+down 8
+forward 2).freeze
+
+  def test_calc_position_1
+    assert_equal [15, 10], calc_position_1(CONTENT)
+  end
+
+  def test_calc_position_2
+    assert_equal [15, 60, 10], calc_position_2(CONTENT)
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_today_i_learned_3"><a class="anchor" href="#_today_i_learned_3"></a><a class="link" href="#_today_i_learned_3">Today I learned</a></h5>
+<div class="paragraph">
+<p>... that I don&#8217;t know how to set up VS Code for decent Ruby development :(</p>
 </div>
 <a id="day03" />
 </div>
@@ -1758,11 +1802,12 @@ mod direct_solution_test {
 </div>
 </div>
 <div class="paragraph">
-<p>For optimization, I did not even think about for something more clever than linear search.</p>
+<p>I did not even think about anything more clever than linear search to solve the optimization problem.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">pub fn get_optimal_positions_fuel(crabs: &amp;[usize], cost: fn(usize) -&gt; usize) -&gt; usize {
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// linear search optimization
+pub fn get_optimal_positions_fuel(crabs: &amp;[usize], cost: fn(usize) -&gt; usize) -&gt; usize {
     let pos_min = *crabs.iter().min().expect("No min");
     let pos_max = *crabs.iter().max().expect("No max");
     (pos_min..=pos_max)
@@ -1780,8 +1825,145 @@ mod direct_solution_test {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">pub const COST_LINEAR: fn(usize) -&gt; usize = |distance| distance;
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// cost function for part 1: identity
+pub const COST_LINEAR: fn(usize) -&gt; usize = |distance| distance;
+
+/// cost function for part 2: Euler formula for the sum 1 + ... + distance
 pub const COST_INCREASING: fn(usize) -&gt; usize = |distance| distance * (distance + 1) / 2;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_solution_revisited"><a class="anchor" href="#_solution_revisited"></a><a class="link" href="#_solution_revisited">Solution Revisited</a></h5>
+<div class="paragraph">
+<p>I learned about <a href="https://gitlab.com/akoeltringer/advent_of_code/-/tree/main/y2021/d07">something more clever than linear search from a colleague</a>:</p>
+</div>
+<div class="paragraph">
+<p>The solution to part 1 is the solution to the optimization problem <code>min_p sum_i |p - pos[i]|</code>. Since the cost function to minimize is V-shaped, the optimization is solved by the median.</p>
+</div>
+<div class="paragraph">
+<p>The solution to part 2 is the solution to the optimization problem <code>min_p sum_i |p - pos[i]| (|p - pos[i]| + 1) / 2</code>. This is the same as <code>min_p (sum_i (p - pos[i])^2 / 2 + sum_i |p - pos[i]| / 2)</code>.</p>
+</div>
+<div class="paragraph">
+<p>The solution to <code>min_p (sum_i (p - pos[i])^2 / 2</code> is given by the mean of the <code>p[i]</code> values, so I start from the mean and look in both directions to potentially find something better.</p>
+</div>
+<div class="paragraph">
+<p>You can run the direct solution using <code>cargo run --release --features direct_solution</code>. Quite a bit faster than linear search ;)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// solution for part 1
+///
+/// default: linear search, see [get_optimal_positions_fuel] and [COST_LINEAR]
+///
+/// if feature ``direct_solution`` is selected, calculate median as solution, see [select]
+pub fn solution_1(crabs: &amp;[usize]) -&gt; usize {
+    if cfg!(feature = "direct_solution") {
+        // calculate median and comput cost for median
+        get_fuel(crabs, select(&amp;crabs, crabs.len() / 2), COST_LINEAR)
+    } else {
+        // linear search
+        get_optimal_positions_fuel(crabs, COST_LINEAR)
+    }
+}
+
+/// solution for part 1
+///
+/// default: linear search, see [get_optimal_positions_fuel] and [COST_INCREASING]
+///
+/// if feature ``direct_solution`` is selected, calculate mean and search for solution in neighborhood
+pub fn solution_2(crabs: &amp;[usize]) -&gt; usize {
+    if cfg!(feature = "direct_solution") {
+        // calculate mean and cost for mean
+        let mean = (crabs.iter().sum::&lt;usize&gt;() + crabs.len() - 1) / crabs.len();
+        let mut cost = get_fuel(crabs, mean, COST_INCREASING);
+
+        // search for improvements for increasing positions
+        let mut delta = 1;
+        loop {
+            let cost_upd = get_fuel(crabs, mean + delta, COST_INCREASING);
+            if cost_upd &gt;= cost {
+                break;
+            }
+
+            cost = cost_upd;
+            delta += 1;
+        }
+
+        // if no improvment found, search for improvements for decreasing positions
+        if delta == 1 {
+            loop {
+                let cost_upd = get_fuel(crabs, mean - delta, COST_INCREASING);
+                if cost_upd &gt;= cost {
+                    break;
+                }
+
+                cost = cost_upd;
+                delta += 1;
+            }
+        }
+
+        cost
+    } else {
+        // linear search
+        get_optimal_positions_fuel(crabs, COST_INCREASING)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The median is calculated recursively:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// Recursive calculation of k-th element.
+///
+/// # Examples
+///
+/// ```
+/// # use mr_kaffee_2021_07::*;
+/// let data = vec![1,4,7,12,8,13,101];
+/// assert_eq!(8, select(&amp;data, data.len() / 2));
+/// ```
+pub fn select(data: &amp;[usize], k: usize) -&gt; usize {
+    if k &gt;= data.len() {
+        panic!(
+            "Cannot get select rank {} of list of size {}",
+            k,
+            data.len()
+        );
+    }
+
+    if data.len() == 1 {
+        return data[0];
+    }
+
+    let pivot = data[0];
+
+    let lows = data
+        .into_iter()
+        .filter(|d| d &lt; &amp;&amp;pivot)
+        .map(|d| *d)
+        .collect::&lt;Vec&lt;_&gt;&gt;();
+    let pivots = data
+        .into_iter()
+        .filter(|d| d == &amp;&amp;pivot)
+        .map(|d| *d)
+        .collect::&lt;Vec&lt;_&gt;&gt;();
+    let highs = data
+        .into_iter()
+        .filter(|d| d &gt; &amp;&amp;pivot)
+        .map(|d| *d)
+        .collect::&lt;Vec&lt;_&gt;&gt;();
+
+    return if k &lt; lows.len() {
+        select(&amp;lows, k)
+    } else if k &lt; lows.len() + pivots.len() {
+        pivots[0]
+    } else {
+        select(&amp;highs, k - lows.len() - pivots.len())
+    };
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1809,13 +1991,13 @@ mod tests {
     }
 
     #[test]
-    fn test_get_optimal_positions_fuel() {
-        assert_eq!(37, get_optimal_positions_fuel(DATA, COST_LINEAR));
+    fn test_solution_1() {
+        assert_eq!(37, solution_1(DATA));
     }
 
     #[test]
-    fn test_get_optimal_positions_fuel_2() {
-        assert_eq!(168, get_optimal_positions_fuel(DATA, COST_INCREASING));
+    fn test_solution_2() {
+        assert_eq!(168, solution_2(DATA));
     }
 }</code></pre>
 </div>
@@ -2192,23 +2374,24 @@ pub fn get_basin_size(w: usize, grid: &amp;[usize], x: usize, y: usize) -&gt; us
     let mut queue = VecDeque::new();
 
     unknown[x + w * y] = false;
-    queue.push_back((x as isize, y as isize));
+    queue.push_back((x, y));
     let mut count = 0;
 
-    let h = (grid.len() / w) as isize;
-    let w = w as isize;
+    let h = grid.len() / w;
 
     // breadth first traversal
     while let Some((x, y)) = queue.pop_front() {
         count += 1;
 
-        for (x_a, y_a) in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)] {
-            if ((0..w).contains(&amp;x_a) &amp;&amp; (0..h).contains(&amp;y_a))
-                &amp;&amp; unknown[(x_a + w * y_a) as usize]
-                &amp;&amp; grid[(x_a + w * y_a) as usize] != 9
-            {
+        for (x_a, y_a) in [
+            (x.wrapping_sub(1), y),
+            (x + 1, y),
+            (x, y.wrapping_sub(1)),
+            (x, y + 1),
+        ] {
+            if (x_a &lt; w &amp;&amp; y_a &lt; h) &amp;&amp; unknown[x_a + w * y_a] &amp;&amp; grid[x_a + w * y_a] != 9 {
                 // if adjacent is within grid, is not yet seen and has a value != 9, mark known and add to queue
-                unknown[(x_a + w * y_a) as usize] = false;
+                unknown[x_a + w * y_a] = false;
                 queue.push_back((x_a, y_a));
             }
         }
@@ -2487,7 +2670,7 @@ pub fn parse(content: &amp;str) -&gt; Vec&lt;usize&gt; {
         .filter(char::is_ascii_digit)
         .map(|c| c as usize - '0' as usize)
         .collect::&lt;Vec&lt;_&gt;&gt;();
-    assert_eq!((N * N) as usize, energies.len(), "Bad length");
+    assert_eq!(N * N, energies.len(), "Bad length");
     energies
 }</code></pre>
 </div>
@@ -2525,7 +2708,7 @@ pub fn step(energies: &amp;mut [usize]) -&gt; usize {
 
     // increase all elements by one
     for k in 0..energies.len() {
-        energies[k] = energies[k] + 1;
+        energies[k] += 1;
         if energies[k] &gt; FLASH_THRESHOLD {
             // flashed -&gt; reset, add index to stack
             energies[k] = 0;
@@ -2555,17 +2738,16 @@ pub fn step(energies: &amp;mut [usize]) -&gt; usize {
             }
 
             // flat index
-            let k_a = (x_a + N * y_a) as usize;
-            if energies[k_a] == 0 {
+            if energies[x_a + N * y_a] == 0 {
                 // already flashed
                 continue;
             }
 
             // not flashed yet, increment
-            energies[k_a] = energies[k_a] + 1;
-            if energies[k_a] &gt; FLASH_THRESHOLD {
+            energies[x_a + N * y_a] += 1;
+            if energies[x_a + N * y_a] &gt; FLASH_THRESHOLD {
                 // flashed -&gt; reset, add index to stack
-                energies[k_a] = 0;
+                energies[x_a + N * y_a] = 0;
                 stack.push((x_a, y_a));
             }
         }
@@ -2715,6 +2897,924 @@ mod tests {
 <h5 id="_today_i_learned_6"><a class="anchor" href="#_today_i_learned_6"></a><a class="link" href="#_today_i_learned_6">Today I learned</a></h5>
 <div class="paragraph">
 <p>In depth first traversal (as well as in breadth first traversal), be careful to not add elements to the stack (or queue) multiple times. In my first approach, I only reset the energy levels when they were popped from the queue. Thus entries could get modified while their indices were in the queue, and indices could be added multiple times. Took a while to sort that out.</p>
+</div>
+<a id="day12" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_12_rust"><a class="anchor" href="#_day_12_rust"></a><a class="link" href="#_day_12_rust">Day 12: rust</a></h3>
+<div class="sect3">
+<h4 id="_day_12_passage_pathing"><a class="anchor" href="#_day_12_passage_pathing"></a><a class="link" href="#_day_12_passage_pathing">Day 12: Passage Pathing</a></h4>
+<div class="paragraph">
+<p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/12">AoC|2021|12</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_solution_2"><a class="anchor" href="#_solution_2"></a><a class="link" href="#_solution_2">Solution</a></h5>
+<div class="paragraph">
+<p>Again a kind of breadth first traversal and the first day in the 2021 edition where my solution takes significant time (more than a couple of ms) to compute. After some optimizations, I am now down to about 40ms for part 2.</p>
+</div>
+<div class="sect5">
+<h6 id="_data_structure_for_the_cave_map"><a class="anchor" href="#_data_structure_for_the_cave_map"></a><a class="link" href="#_data_structure_for_the_cave_map">Data Structure for the Cave Map</a></h6>
+<div class="paragraph">
+<p>To start, I parse the input into a struct <code>CaveMap</code> (see comments in code for details):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// Map of Caves
+///
+/// Each cave has a unique ID: the position of it's name in the [CaveMap::caves] field.
+/// The adjacents of the cave are stored in the list at the same position in the [CaveMap::adjacents] field.
+///
+/// The IDs of the start and end cave are stored in the fields [CaveMap::start] and [CaveMap::end].
+pub struct CaveMap&lt;'a&gt; {
+    pub caves: Vec&lt;&amp;'a str&gt;,
+    pub adjacents: Vec&lt;Vec&lt;usize&gt;&gt;,
+    pub start: usize,
+    pub end: usize,
+}
+
+impl&lt;'a&gt; CaveMap&lt;'a&gt; {
+    /// parse input to map
+    pub fn parse(input: &amp;'a str) -&gt; Self {
+        let mut caves = Vec::new();
+        let mut adjacents = Vec::new();
+        let mut start = 0;
+        let mut end = 0;
+
+        for line in input.lines() {
+            let mut parts = line.split('-').map(|part| {
+                caves
+                    .iter()
+                    .position(|cave| *cave == part)
+                    .unwrap_or_else(|| {
+                        caves.push(part);
+                        adjacents.push(Vec::new());
+                        // keep ID to start or end
+                        match part {
+                            "start" =&gt; start = caves.len() - 1,
+                            "end" =&gt; end = caves.len() - 1,
+                            _ =&gt; {}
+                        }
+                        caves.len() - 1
+                    })
+            });
+
+            let lhs_id = parts.next().expect("No LHS");
+            let rhs_id = parts.next().expect("No RHS");
+            assert!(parts.next().is_none(), "More than two parts");
+            adjacents[lhs_id].push(rhs_id);
+            adjacents[rhs_id].push(lhs_id);
+        }
+
+        CaveMap {
+            caves,
+            adjacents,
+            start,
+            end,
+        }
+    }
+
+    /// check whether cave with given ID is small
+    pub fn is_small(&amp;self, id: usize) -&gt; bool {
+        self.caves[id].chars().next().unwrap().is_ascii_lowercase()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In my initial implementation, I used a <code>BTreeMap</code> to map cave names to adjacent names. In the current version, I use cave IDs instead, which are the addresses to the fields in the CaveMap structure. This reduced the runtime by about 25%.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_searching_for_paths"><a class="anchor" href="#_searching_for_paths"></a><a class="link" href="#_searching_for_paths">Searching for Paths</a></h6>
+<div class="paragraph">
+<p>The general soluton idea is to do a (breadth first) traversal on a graph of all possible paths through the cave (graph nodes are paths, not caves):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Push a path consisting of the <code>start</code> cave only to the queue</p>
+</li>
+<li>
+<p>Pop a path from the queue, and look at all adjacent caves of the last cave on the path</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the adjacent cave is <code>start</code>, ignore it</p>
+</li>
+<li>
+<p>if the adjacent cave is <code>end</code>, the path is complete; increase the unqiue path counter</p>
+</li>
+<li>
+<p>if the adjacent cave is a large cave, append it to the path and push the extended path to the queue</p>
+</li>
+<li>
+<p>if the adjacent cave is a small cave, append it to the path and push the extended path to the queue if</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the small cave is not yet on the path (part 1 &amp; 2) or</p>
+</li>
+<li>
+<p>the small cave is already on the path and no small cave is on the path twice yet (part 2 only)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Repeat step 2 until queue is empty</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// count number of distinct pathes using map
+///
+/// the flag ``no_duplicate_small`` controls whether small caves may be visited more than
+/// once. If the flag is set to ``true``, this is not allowed at all. If it is set to false,
+/// it is allowed at most once.
+pub fn get_path_count(map: &amp;CaveMap, no_duplicate_small: bool) -&gt; usize {
+    // store all path elements as a cave ID and a parent pointer (= index to this vec) wrapped in an Option
+    let mut paths: Vec&lt;(usize, Option&lt;usize&gt;)&gt; = Vec::new();
+
+    // count of unique paths
+    let mut path_count = 0;
+
+    let mut queue = VecDeque::new();
+    paths.push((map.start, None));
+    queue.push_back((paths.len() - 1, no_duplicate_small));
+
+    while let Some((ptr, no_duplicate_small)) = queue.pop_front() {
+        let cave_id = paths[ptr].0;
+        for &amp;id in &amp;map.adjacents[cave_id] {
+            if id == map.start {
+                // never go back to start
+                continue;
+            } else if id == map.end {
+                // new path to "end" found
+                path_count += 1;
+                continue;
+            }
+
+            let duplicate_small = map.is_small(id) &amp;&amp; contains(&amp;paths, ptr, id);
+            if no_duplicate_small &amp;&amp; duplicate_small {
+                // skip small cave already on path, if no duplicate small caves are allowed
+                continue;
+            }
+
+            // push new path element to paths vec
+            paths.push((id, Some(ptr)));
+
+            // add pointer to path element to queue
+            // if a duplicate small was added, no further duplicate smalls are allowed
+            queue.push_back((paths.len() - 1, no_duplicate_small || duplicate_small));
+        }
+    }
+
+    path_count
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Initially, I used <code>Vec</code>s to represent paths. To extend a path by another cave, I copied the complete <code>Vec</code>, added the cave&#8217;s name and pushed the <code>Vec</code> to the queue. In the current version, I use kind of a linked list (each path element has a reference to the parent element). Since linked lists are something that does not go very well with Rust&#8217;s ownership and borrowing system (or maybe I just don&#8217;t know how to do that properly), I keep a <code>Vec</code> of all path elements (for part 2, a total of 427.805 path elements are created). Each path element is a tuple of a cave ID and and a parent pointer, which points to the parent path element in that <code>Vec</code>. Because the start of a path has no parent, the parent pointer is wrapped in an <code>Option</code>. This optimization reduced the runtime by about 75%.</p>
+</div>
+<div class="paragraph">
+<p>The check whether a cave ID is contained in a path is implemented as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// determine whether a path contains a cave
+fn contains(paths: &amp;[(usize, Option&lt;usize&gt;)], ptr: usize, id: usize) -&gt; bool {
+    let mut ptr = ptr;
+    loop {
+        let (cave_id, opt_ptr) = paths[ptr];
+        if cave_id == id {
+            return true;
+        }
+
+        if let Some(next_ptr) = opt_ptr {
+            ptr = next_ptr;
+        } else {
+            return false;
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests_11"><a class="anchor" href="#_tests_11"></a><a class="link" href="#_tests_11">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use std::collections::{BTreeMap, BTreeSet};
+
+    use super::*;
+
+    const TEST_INPUT: &amp;str = "start-A
+start-b
+A-c
+A-b
+b-d
+A-end
+b-end";
+
+    fn get_test_data() -&gt; BTreeMap&lt;&amp;'static str, BTreeSet&lt;&amp;'static str&gt;&gt; {
+        BTreeMap::from([
+            ("start", BTreeSet::from(["A", "b"])),
+            ("A", BTreeSet::from(["start", "c", "b", "end"])),
+            ("b", BTreeSet::from(["start", "A", "d", "end"])),
+            ("c", BTreeSet::from(["A"])),
+            ("d", BTreeSet::from(["b"])),
+            ("end", BTreeSet::from(["A", "b"])),
+        ])
+    }
+
+    fn get_adjacents&lt;'a&gt;(map: &amp;'a CaveMap, name: &amp;str) -&gt; Option&lt;impl Iterator&lt;Item = &amp;'a str&gt;&gt; {
+        map.caves
+            .iter()
+            .position(|cave| *cave == name)
+            .map(|idx| map.adjacents[idx].iter().map(|adj| map.caves[*adj]))
+    }
+
+    #[test]
+    fn test_parse() {
+        let map = parse(TEST_INPUT);
+        for (name, adjacents) in get_test_data() {
+            assert_eq!(
+                Some(adjacents),
+                get_adjacents(&amp;map, name).map(|it| it.collect())
+            );
+        }
+    }
+
+    #[test]
+    fn test_solution_1() {
+        assert_eq!(10, solution_1(&amp;parse(&amp;TEST_INPUT)))
+    }
+
+    #[test]
+    fn test_solution_2() {
+        assert_eq!(36, solution_2(&amp;parse(&amp;TEST_INPUT)))
+    }
+}</code></pre>
+</div>
+</div>
+<a id="day13" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_13_rust"><a class="anchor" href="#_day_13_rust"></a><a class="link" href="#_day_13_rust">Day 13: rust</a></h3>
+<div class="sect3">
+<h4 id="_day_13_transparent_origami"><a class="anchor" href="#_day_13_transparent_origami"></a><a class="link" href="#_day_13_transparent_origami">Day 13: Transparent Origami</a></h4>
+<div class="paragraph">
+<p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/13">AoC|2021|13</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_part_1_10"><a class="anchor" href="#_part_1_10"></a><a class="link" href="#_part_1_10">Part 1</a></h5>
+<div class="paragraph">
+<p>I parse the points in a set (that does the duplicates handling for me) and the fold instructions in a list of tuples with a boolean flag and a fold coordinate. The boolean flag is set to true for horizontal folds and false for vertical folds</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">pub fn parse(content: &amp;str) -&gt; (HashSet&lt;(usize, usize)&gt;, Vec&lt;(bool, usize)&gt;) {
+    let mut parts = content.split("\n\n");
+    (
+        parts
+            .next()
+            .expect("No points")
+            .lines()
+            .map(|line| line.split(","))
+            .map(|mut point_parts| {
+                (
+                    point_parts
+                        .next()
+                        .expect("No x coordinate")
+                        .parse()
+                        .expect("Could not parse x"),
+                    point_parts
+                        .next()
+                        .expect("No y coordinate")
+                        .parse()
+                        .expect("Could not parse y"),
+                )
+            })
+            .collect(),
+        parts
+            .next()
+            .expect("No fold instructions")
+            .lines()
+            .map(|line| line.split("="))
+            .map(|mut fold_parts| {
+                (
+                    match fold_parts.next() {
+                        Some("fold along y") =&gt; true,
+                        Some("fold along x") =&gt; false,
+                        _ =&gt; panic!("Unexpected fold instruction"),
+                    },
+                    fold_parts
+                        .next()
+                        .expect("No fold coordinate")
+                        .parse()
+                        .expect("Could not parse fold coordinate"),
+                )
+            })
+            .collect(),
+    )
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The fold function iterates over all points, checks whether they are below / to the right of the fold coordinate and maps them above / to the left. Then everything is collected to a set again (removing duplicates)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// perform a single fold
+pub fn fold(
+    points: &amp;HashSet&lt;(usize, usize)&gt;,
+    horizontal: bool,
+    coord: usize,
+) -&gt; HashSet&lt;(usize, usize)&gt; {
+    points
+        .iter()
+        .map(|(x, y)| {
+            if horizontal &amp;&amp; y &gt; &amp;coord {
+                (*x, 2 * coord - *y)
+            } else if !horizontal &amp;&amp; x &gt; &amp;coord {
+                (2 * coord - *x, *y)
+            } else {
+                (*x, *y)
+            }
+        })
+        .collect()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is used for part 1 as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// count points after first fold operation
+pub fn solution_1(points: &amp;HashSet&lt;(usize, usize)&gt;, folds: &amp;[(bool, usize)]) -&gt; usize {
+    let (horizontal, fold_coordinate) = folds.first().expect("No folds");
+    fold(points, *horizontal, *fold_coordinate).len()
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_part_2_10"><a class="anchor" href="#_part_2_10"></a><a class="link" href="#_part_2_10">Part 2</a></h5>
+<div class="paragraph">
+<p>Part 2 adds calculating a bounding box of the result and putting everything together in a string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">pub fn points_to_string(points: &amp;HashSet&lt;(usize, usize)&gt;) -&gt; String {
+    // calculate bounding box
+    let (x_min, y_min, x_max, y_max) = points.iter().fold(
+        (usize::MAX, usize::MAX, 0, 0),
+        |(x_min, y_min, x_max, y_max), (x, y)| {
+            (
+                cmp::min(x_min, *x),
+                cmp::min(y_min, *y),
+                cmp::max(x_max, *x + 1),
+                cmp::max(y_max, *y + 1),
+            )
+        },
+    );
+
+    // assemble result string
+    (y_min..y_max)
+        .map(|y| {
+            (x_min..x_max)
+                .map(|x| if points.contains(&amp;(x, y)) { '#' } else { '.' })
+                .collect::&lt;String&gt;()
+        })
+        .map(|line| line.add("\n"))
+        .collect::&lt;String&gt;()
+}
+
+/// perform all fold operations and return result as a ``String``
+pub fn solution_2(points: &amp;HashSet&lt;(usize, usize)&gt;, folds: &amp;[(bool, usize)]) -&gt; String {
+    let mut points = points.to_owned();
+    for (horizontal, fold_coordinate) in folds {
+        points = fold(&amp;points, *horizontal, *fold_coordinate);
+    }
+
+    points_to_string(&amp;points)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Solving part 2 took much longer than it should for me, because I messed up with the bounding box. Tried to find my mistake in the calculations to figure out that I just took <code>y_min</code> for <code>x_max</code> and vice versa resulting in empty strings all the time :(.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests_12"><a class="anchor" href="#_tests_12"></a><a class="link" href="#_tests_12">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const TEST_CONTENT: &amp;str = "6,10
+0,14
+9,10
+0,3
+10,4
+4,11
+6,0
+6,12
+4,1
+0,13
+10,12
+3,4
+3,0
+8,4
+1,10
+2,14
+8,10
+9,0
+
+fold along y=7
+fold along x=5";
+
+    const TEST_POINTS: [(usize, usize); 18] = [
+        (6, 10),
+        (0, 14),
+        (9, 10),
+        (0, 3),
+        (10, 4),
+        (4, 11),
+        (6, 0),
+        (6, 12),
+        (4, 1),
+        (0, 13),
+        (10, 12),
+        (3, 4),
+        (3, 0),
+        (8, 4),
+        (1, 10),
+        (2, 14),
+        (8, 10),
+        (9, 0),
+    ];
+
+    const TEST_FOLDS: &amp;[(bool, usize)] = &amp;[(true, 7), (false, 5)];
+
+    const TEST_RESULT: &amp;str = "#####\n\
+                               #...#\n\
+                               #...#\n\
+                               #...#\n\
+                               #####\n";
+
+    #[test]
+    fn test_parse() {
+        let (points, folds) = parse(&amp;TEST_CONTENT);
+        assert_eq!(HashSet::from(TEST_POINTS), points);
+        assert_eq!(TEST_FOLDS, folds);
+    }
+
+    #[test]
+    fn test_solution_1() {
+        let (points, folds) = parse(&amp;TEST_CONTENT);
+        assert_eq!(17, solution_1(&amp;points, &amp;folds));
+    }
+
+    #[test]
+    fn test_solution_2() {
+        let (points, folds) = parse(&amp;TEST_CONTENT);
+        assert_eq!(TEST_RESULT, solution_2(&amp;points, &amp;folds));
+    }
+}</code></pre>
+</div>
+</div>
+<a id="day14" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_14_rust"><a class="anchor" href="#_day_14_rust"></a><a class="link" href="#_day_14_rust">Day 14: rust</a></h3>
+<div class="sect3">
+<h4 id="_day_14"><a class="anchor" href="#_day_14"></a><a class="link" href="#_day_14">Day 14: <em>__</em></a></h4>
+<div class="paragraph">
+<p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/14">AoC|2021|14</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_solution_3"><a class="anchor" href="#_solution_3"></a><a class="link" href="#_solution_3">Solution</a></h5>
+<div class="paragraph">
+<p>Ough! Today&#8217;s was the biggest headache so far this year.</p>
+</div>
+<div class="paragraph">
+<p>I was aware when starting part 1 that a solution based on arrays will probably not solve part 2. It was good enough for part 1 though.</p>
+</div>
+<div class="paragraph">
+<p>But while implementing it, I was sure I will need linked lists for part 2 and I was afraid of it, because I really don&#8217;t know how to implement linked lists in Rust and the <code>LinkedList</code> Rust comes with did not help a lot. So I spent quite some time trying to implement a linked list in Rust and - again - failed. Switch to Java, where linked lists are no pain at all just to realize that no list based solution will work at all for today.</p>
+</div>
+<div class="paragraph">
+<p>With a little bit of thinking on the problem, I realized that it would be enough to just count the pairs. It does not really matter where they appear in the polymer. With this idea, the solution was not very complicated&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Parse the input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// porse content into a vector of chars and a map with pairs of chars as keys and the
+/// char to be inserted as value
+pub fn parse(content: &amp;str) -&gt; (Vec&lt;char&gt;, HashMap&lt;(char, char), char&gt;) {
+    let mut parts = content.split("\n\n");
+
+    let template = parts
+        .next()
+        .expect("No template")
+        .chars()
+        .collect::&lt;Vec&lt;_&gt;&gt;();
+
+    let rules = parts
+        .next()
+        .expect("No rules")
+        .lines()
+        .map(|line| {
+            let mut chars = line.chars();
+            let a = chars.next().expect("No first char");
+            let b = chars.next().expect("No second char");
+            let c = chars.skip(4).next().expect("No resulting char");
+            ((a, b), c)
+        })
+        .collect::&lt;HashMap&lt;_, _&gt;&gt;();
+
+    (template, rules)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Simulate rounds of insertions</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">/// simulate given number of rounds starting from polymer template and using given
+/// rules
+pub fn simulate_rounds(
+    template: &amp;[char],
+    rules: &amp;HashMap&lt;(char, char), char&gt;,
+    rounds: usize,
+) -&gt; usize {
+    // map of pairs to number of occurances of those
+    let mut pairs = HashMap::new();
+    for (c1, c2) in template.iter().zip(template.iter().skip(1)) {
+        let cnt = pairs.entry((*c1, *c2)).or_insert(0usize);
+        *cnt += 1;
+    }
+
+    // in each round, update pairs
+    for _ in 0..rounds {
+        let mut upd = HashMap::new();
+        for ((c1, c2), cnt0) in &amp;pairs {
+            if let Some(d) = rules.get(&amp;(*c1, *c2)) {
+                // if pair is found in rules, replace (c1, c2) by (c1, d) and (d, c2)
+                let cnt = upd.entry((*c1, *d)).or_insert(0);
+                *cnt += cnt0;
+                let cnt = upd.entry((*d, *c2)).or_insert(0);
+                *cnt += cnt0;
+            } else {
+                // if pair is not found in rules, keep pair
+                let cnt = upd.entry((*c1, *c2)).or_insert(0);
+                *cnt += cnt0;
+            }
+        }
+        pairs = upd;
+    }
+
+    // count symbols in pairs
+    // each symbol contributes to two pairs except for the first and the last symbol
+    // start with count = 1 for first and last symbol to consistently count every symbol
+    // twice
+    let mut counts = HashMap::new();
+    counts.insert(template[0], 1);
+    counts.insert(template[template.len() - 1], 1);
+    for ((c1, c2), cnt) in &amp;pairs {
+        let count = counts.entry(*c1).or_insert(0);
+        *count += cnt;
+        let count = counts.entry(*c2).or_insert(0);
+        *count += cnt;
+    }
+
+    // get (twice the) count for most and less frequent symbol
+    let min = counts.values().min().expect("No min");
+    let max = counts.values().max().expect("No max");
+
+    // return difference, divide by 2 because every symbol is counted twice
+    (max - min) / 2
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests_13"><a class="anchor" href="#_tests_13"></a><a class="link" href="#_tests_13">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const CONTENT: &amp;str = "NNCB
+
+CH -&gt; B
+HH -&gt; N
+CB -&gt; H
+NH -&gt; C
+HB -&gt; C
+HC -&gt; B
+HN -&gt; C
+NN -&gt; C
+BH -&gt; H
+NC -&gt; B
+NB -&gt; B
+BN -&gt; B
+BB -&gt; N
+BC -&gt; B
+CC -&gt; N
+CN -&gt; C";
+    const TEST_TEMPLATE: [char; 4] = ['N', 'N', 'C', 'B'];
+    const TEST_RULES: [((char, char), char); 16] = [
+        (('C', 'H'), 'B'),
+        (('H', 'H'), 'N'),
+        (('C', 'B'), 'H'),
+        (('N', 'H'), 'C'),
+        (('H', 'B'), 'C'),
+        (('H', 'C'), 'B'),
+        (('H', 'N'), 'C'),
+        (('N', 'N'), 'C'),
+        (('B', 'H'), 'H'),
+        (('N', 'C'), 'B'),
+        (('N', 'B'), 'B'),
+        (('B', 'N'), 'B'),
+        (('B', 'B'), 'N'),
+        (('B', 'C'), 'B'),
+        (('C', 'C'), 'N'),
+        (('C', 'N'), 'C'),
+    ];
+
+    #[test]
+    fn test_parse() {
+        let (template, rules) = parse(&amp;CONTENT);
+        assert_eq!(Vec::from(TEST_TEMPLATE), template);
+        assert_eq!(HashMap::from(TEST_RULES), rules);
+    }
+
+    #[test]
+    fn test_solution_1() {
+        assert_eq!(
+            1_588,
+            solution_1(&amp;Vec::from(TEST_TEMPLATE), &amp;HashMap::from(TEST_RULES))
+        );
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_today_i_learned_7"><a class="anchor" href="#_today_i_learned_7"></a><a class="link" href="#_today_i_learned_7">Today I learned</a></h5>
+<div class="paragraph">
+<p>If Eric Wastl says "This polymer grows quickly" and the examples provided in the puzzle description produce numbers &gt; 2 Trillions, there is probably no list based implementation (be it linked or array based lists) that efficiently solve the puzzle.</p>
+</div>
+<a id="day15" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_15_rust"><a class="anchor" href="#_day_15_rust"></a><a class="link" href="#_day_15_rust">Day 15: rust</a></h3>
+<div class="sect3">
+<h4 id="_day_15_chiton"><a class="anchor" href="#_day_15_chiton"></a><a class="link" href="#_day_15_chiton">Day 15: Chiton</a></h4>
+<div class="paragraph">
+<p><a href="https://rust-lang.org">Rust</a> solution to <a href="https://adventofcode.com/2021/day/15">AoC|2021|15</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_solution_4"><a class="anchor" href="#_solution_4"></a><a class="link" href="#_solution_4">Solution</a></h5>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra!?</a></p>
+</div>
+<div class="paragraph">
+<p>When looking at the puzzle, I thought: "Obviously Dijkstra". Then I implemented a solution which I thought was Dijskstra while it actually was not. It still worked.</p>
+</div>
+<div class="paragraph">
+<p>I realized my implementation was not Dijkstra when I tried to extend to <a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A*</a> to figure out whether this improves performance.</p>
+</div>
+<div class="paragraph">
+<p>Hence, as a second step, I implemented Dijkstra. This works as well (obvisouly) but performs worse than my initial solution. For my Dijkstra implementation, A* (with the length of the shortest path to the target: <code>width - 1 - x + height - 1 - y</code>) does not perform any better.</p>
+</div>
+<div class="paragraph">
+<p>The reason why my first solution works is the structure of the problem: the weight of an edge to any coordinate (x, y) is independent of the neighbor from where we reach the coordinate. Hence, if a coordinate is reached once in the algorithm, it is not possible to reach it later on with a lower overall risk. That essentially means: there will never be any decrease keys. This can be confirmed in the Dijkstra implementation by uncommenting the line</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-rust" data-lang="rust">// unreachable!("Decrese key can never happen");</code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_simple_algorithm"><a class="anchor" href="#_simple_algorithm"></a><a class="link" href="#_simple_algorithm">Simple Algorithm</a></h6>
+<div class="paragraph">
+<p>The simple solution (my first solution) is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">pub fn solve(grid: &amp;[usize], w: usize, n: usize) -&gt; usize {
+    let h = grid.len() / w;
+
+    let mut heap = BinaryHeap::new();
+    let mut settled = vec![false; grid.len() * n * n];
+
+    heap.push((usize::MAX, 0)); // nodes are tuples (usize::MAX - risk, idx)
+    settled[0] = true;
+
+    while let Some((risk, idx)) = heap.pop() {
+        if idx == grid.len() * n * n - 1 {
+            return usize::MAX - risk; // target reached
+        }
+
+        let (x, y) = (idx % (w * n), idx / (w * n));
+
+        for (x_a, y_a) in [
+            (x + 1, y),
+            (x, y + 1),
+            (x.wrapping_sub(1), y),
+            (x, y.wrapping_sub(1)),
+        ] {
+            if x_a &gt;= w * n || y_a &gt;= h * n || settled[x_a + y_a * w * n] {
+                continue; // out of bounds or visisted
+            }
+
+            let risk = risk - ((grid[x_a % w + y_a % h * w] + x_a / w + y_a / h - 1) % 9) - 1;
+
+            settled[x_a + y_a * w * n] = true; // first visit settles
+            heap.push((risk, x_a + y_a * w * n));
+        }
+    }
+
+    panic!("No path found");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the simple solution, I "invert" the risk (<code>usize::MAX - risk</code>) because <code>BinaryHeap</code> returns the biggest element first.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_dijkstra"><a class="anchor" href="#_dijkstra"></a><a class="link" href="#_dijkstra">Dijkstra</a></h6>
+<div class="paragraph">
+<p>The Dijkstra implementatino looks as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">    pub fn solve(grid: &amp;[usize], w: usize, n: usize) -&gt; usize {
+        let h = grid.len() / w;
+
+        let mut heap = BTreeSet::new();
+        let mut settled = vec![false; w * h * n * n];
+        let mut risks = vec![None; w * h * n * n];
+
+        heap.insert((0, 0)); // nodes are tuples (risk, idx)
+        risks[0] = Some(0); // keep track of best risks so far
+        settled[0] = true; // flag nodes which are settled
+
+        while let Some((risk, idx)) = heap.pop_first() {
+            if idx == grid.len() * n * n - 1 {
+                return risk; // target reached
+            }
+            settled[idx] = true; // no further improvement possible
+
+            let (x, y) = (idx % (w * n), idx / (w * n));
+            for (x_a, y_a) in [
+                (x + 1, y),
+                (x, y + 1),
+                (x.wrapping_sub(1), y),
+                (x, y.wrapping_sub(1)),
+            ] {
+                let idx_a = x_a + y_a * w * n;
+                if x_a &gt;= w * n || y_a &gt;= h * n || settled[idx_a] {
+                    continue; // out of bounds or settled
+                }
+
+                let risk_upd =
+                    risk + ((grid[x_a % w + y_a % h * w] + x_a / w + y_a / h - 1) % 9) + 1;
+                if let Some(risk_cur) = risks[idx_a] {
+                    if risk_upd &gt;= risk_cur {
+                        continue; // no improvement
+                    }
+                    // unreachable!("Decrese key can never happen");
+                    heap.remove(&amp;(risk_cur, idx_a)); // improved path to node seen previously
+                }
+
+                heap.insert((risk_upd, idx_a));
+                risks[idx_a] = Some(risk_upd);
+            }
+        }
+
+        panic!("No path found");
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I use a <code>BTreeSet</code> as heap. Decrease key is implemented as remove old node and insert new node (but actually never used, see above).</p>
+</div>
+<div class="paragraph">
+<p>The solution only compiles using the rust nightly channel because <code>BTreeSet::pop_first</code> is unstable. The simple version runs on rust stable.</p>
+</div>
+<div class="paragraph">
+<p>Run the Dijkstra version with <code>cargo run --release --features dijkstra</code>.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parse"><a class="anchor" href="#_parse"></a><a class="link" href="#_parse">Parse</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">///
+/// ```
+/// # use mr_kaffee_2021_15::*;
+/// assert_eq!((vec![0, 1, 2, 3], 2), parse("01\n23"));
+/// ```
+pub fn parse(content: &amp;str) -&gt; (Vec&lt;usize&gt;, usize) {
+    (
+        content
+            .chars()
+            .filter(|c| c.is_ascii_digit())
+            .map(|c| c as usize - '0' as usize)
+            .collect(),
+        content.lines().next().expect("No data").len(),
+    )
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_tests_14"><a class="anchor" href="#_tests_14"></a><a class="link" href="#_tests_14">Tests</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const TEST_CONTENT: &amp;str = "1163751742
+1381373672
+2136511328
+3694931569
+7463417111
+1319128137
+1359912421
+3125421639
+1293138521
+2311944581";
+
+    const TEST_GRID: &amp;'static [usize] = &amp;[
+        1, 1, 6, 3, 7, 5, 1, 7, 4, 2, 1, 3, 8, 1, 3, 7, 3, 6, 7, 2, 2, 1, 3, 6, 5, 1, 1, 3, 2, 8,
+        3, 6, 9, 4, 9, 3, 1, 5, 6, 9, 7, 4, 6, 3, 4, 1, 7, 1, 1, 1, 1, 3, 1, 9, 1, 2, 8, 1, 3, 7,
+        1, 3, 5, 9, 9, 1, 2, 4, 2, 1, 3, 1, 2, 5, 4, 2, 1, 6, 3, 9, 1, 2, 9, 3, 1, 3, 8, 5, 2, 1,
+        2, 3, 1, 1, 9, 4, 4, 5, 8, 1,
+    ];
+    const TEST_WIDTH: usize = 10;
+
+    #[test]
+    fn test_parse() {
+        let (grid, width) = parse(TEST_CONTENT);
+        assert_eq!(TEST_GRID, grid);
+        assert_eq!(TEST_WIDTH, width);
+    }
+
+    #[test]
+    fn test_solution_1() {
+        assert_eq!(40, solution_1(&amp;TEST_GRID, TEST_WIDTH))
+    }
+
+    #[test]
+    fn test_solution_2() {
+        assert_eq!(315, solution_2(&amp;TEST_GRID, TEST_WIDTH))
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_today_i_learned_8"><a class="anchor" href="#_today_i_learned_8"></a><a class="link" href="#_today_i_learned_8">Today I Learned</a></h5>
+<div class="paragraph">
+<p>A possible way to implement Dijkstra on a simple graph with Rust.</p>
+</div>
+<div class="paragraph">
+<p>Remember how Dijkstra and A* really work and understand that Dijkstra is not always needed depending on the structure of the problem to solve.</p>
+</div>
+<div class="paragraph">
+<p>Use features for conditional compilation and use unstable Rust features.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately, I also learned that the Rust collections in <code>std::collections</code> offer a quite poor interface. The function <code>BTreeMap::pop_min</code> being unstable is sad.</p>
 </div>
 </div>
 </div>

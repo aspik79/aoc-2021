@@ -258,6 +258,37 @@
 <ul class="sectlevel4">
 <li><a href="#_first_star_11">First Star</a></li>
 <li><a href="#_second_star_11">Second Star</a></li>
+<li><a href="#_add_on">Add On</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_12_kotlin">Day 12: kotlin</a>
+<ul class="sectlevel3">
+<li><a href="#_day_12_passage_pathing">Day 12: Passage Pathing</a>
+<ul class="sectlevel4">
+<li><a href="#_first_star_12">First Star</a></li>
+<li><a href="#_second_star_12">Second Star</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_13_kotlin">Day 13: kotlin</a>
+<ul class="sectlevel3">
+<li><a href="#_day_13_transparent_origami">Day 13: Transparent Origami</a>
+<ul class="sectlevel4">
+<li><a href="#_first_star_13">First Star</a></li>
+<li><a href="#_second_star_13">Second Star</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_day_14_kotlin">Day 14: kotlin</a>
+<ul class="sectlevel3">
+<li><a href="#_day_14_extended_polymerization">Day 14: Extended Polymerization</a>
+<ul class="sectlevel4">
+<li><a href="#_first_star_14">First Star</a></li>
+<li><a href="#_second_star_14">Second Star</a></li>
 </ul>
 </li>
 </ul>
@@ -1760,6 +1791,494 @@
 	println()
 // end::output[]
 //}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_add_on"><a class="anchor" href="#_add_on"></a><a class="link" href="#_add_on">Add On</a></h5>
+<div class="paragraph">
+<p>After some discussion with Peter about using lists or arrays I created a verson based on a list and one on an array. Both are running 1000 times and the execution time is measured. I run it several times, but there was not realy a valuable result reachable, one time the array version was faster, one time the list. My expectation would have been, that the array version is faster.</p>
+</div>
+<a id="day12" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_12_kotlin"><a class="anchor" href="#_day_12_kotlin"></a><a class="link" href="#_day_12_kotlin">Day 12: kotlin</a></h3>
+<div class="sect3">
+<h4 id="_day_12_passage_pathing"><a class="anchor" href="#_day_12_passage_pathing"></a><a class="link" href="#_day_12_passage_pathing">Day 12: Passage Pathing</a></h4>
+<div class="paragraph">
+<p>This solution is written in Kotlin.</p>
+</div>
+<div class="paragraph">
+<p>The original puzzle can be found at <a href="https://adventofcode.com/2021/day/12" class="bare">https://adventofcode.com/2021/day/12</a></p>
+</div>
+<div class="paragraph">
+<p>For execution enter <em>kotlin day2112_1_2.kts</em> in the command line.</p>
+</div>
+<div class="sect4">
+<h5 id="_first_star_12"><a class="anchor" href="#_first_star_12"></a><a class="link" href="#_first_star_12">First Star</a></h5>
+<div class="paragraph">
+<p>How does it work:<br></p>
+</div>
+<div class="paragraph">
+<p>All possible pathes are build up step by step, each new path is checked if following the rule. As an extension for part 2 the 'followPath' function has an input paramter which is able to switch to a new rule. All path which came to an end are stored in a separate list.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">fun followPath(input1: Int): Int {
+	var segments = mutableListOf&lt;Pair&lt;String, String&gt;&gt;()
+	var searchPath = mutableListOf&lt;String&gt;()
+	var searchPathNew = mutableListOf&lt;String&gt;()
+	var validPath = mutableListOf&lt;String&gt;()
+	var searchEnd: Boolean = false
+	var currentPath: String
+	var newCurrentPath: String
+	var ruleCheckPassed: Boolean = false
+
+	File("day2112_puzzle_input.txt").forEachLine {
+		var instruction = it.split("-")
+		if (instruction[0] == "start") {
+			searchPath.add(instruction[0] + "," + instruction[1])
+		} else if (instruction[1] == "start") {
+			searchPath.add(instruction[1] + "," + instruction[0])
+		} else {
+			segments.add(Pair(instruction[0], instruction[1]))
+		}
+	}
+
+	while (!searchEnd) {
+
+		searchEnd = true
+
+		searchPath.forEach {
+			currentPath = it
+			var instruction = it.split(",")
+			var lastSegment = instruction[instruction.size - 1]
+
+			segments.forEach {
+				if (lastSegment == it.first) {
+					newCurrentPath = currentPath + "," + it.second
+					if (it.second == "end") {
+						//if (!validPath.contains(newCurrentPath)) {
+							validPath.add(newCurrentPath)
+						//}
+					} else {
+						if (input1 == 1) {
+							ruleCheckPassed = !(it.second.toLowerCase() == it.second &amp;&amp; currentPath.contains(it.second))
+						} else if (input1 == 2) {
+							ruleCheckPassed = ruleCheck2(newCurrentPath.drop(6))
+						}
+						if (ruleCheckPassed) {
+							searchPathNew.add(newCurrentPath)
+							searchEnd = false
+						}
+					}
+				} else if (lastSegment == it.second) {
+					newCurrentPath = currentPath + "," + it.first
+					if (it.first == "end") {
+						//if (!validPath.contains(newCurrentPath)) {
+							validPath.add(newCurrentPath)
+						//}
+					} else {
+						// check rule
+						if (input1 == 1) {
+							ruleCheckPassed = !(it.first.toLowerCase() == it.first &amp;&amp; currentPath.contains(it.first))
+						} else if (input1 == 2) {
+							// rule for part 2
+							ruleCheckPassed = ruleCheck2(newCurrentPath.drop(6))
+						}
+						if (ruleCheckPassed) {
+							searchPathNew.add(newCurrentPath)
+							searchEnd = false
+						}
+					}
+				}
+			}
+		}
+		searchPath.clear()
+		searchPath.addAll(searchPathNew)
+		searchPathNew.clear()
+	}
+	return validPath.size
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_second_star_12"><a class="anchor" href="#_second_star_12"></a><a class="link" href="#_second_star_12">Second Star</a></h5>
+<div class="paragraph">
+<p>How does it work:<br></p>
+</div>
+<div class="paragraph">
+<p>Solution for this part is integrated in function 'followPath' by just choosing an other rule to be applied. Since the rule does need some lines of code, I separated it into a new function 'ruleCheck2'</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">fun ruleCheck2(input1: String): Boolean {
+
+	var count = mutableMapOf&lt;String, Int&gt;()
+	var instruction = input1.split(",")
+
+	instruction.forEach {
+		if (it.toLowerCase() == it) {
+			if (count.containsKey(it)) {
+				count.put(it, count.getValue(it) + 1)
+				if (count.getValue(it) &gt; 2) {
+					return false
+				}
+			} else {
+				count.put(it, 1)
+			}
+		}
+	}
+	var sum: Int = 0
+	for ((key, value) in count.entries) {
+		sum = sum + value
+	}
+	if (sum &gt; count.size + 1) {
+		return false
+	}
+	return true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At the end, both solutions are printed out.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">// print solution for part 1
+	println("*******************************")
+	println("--- Day 12: Passage Pathing ---")
+	println("*******************************")
+	println("Solution for part1")
+	println("   $solution1 paths through this cave system are there that visit small caves at most once")
+	println()
+// print solution for part 2
+	println("*******************************")
+	println("Solution for part2")
+	println("   $solution2 how many paths through this cave system are there")
+	println()
+// end::output[]
+//}</code></pre>
+</div>
+</div>
+<a id="day13" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_13_kotlin"><a class="anchor" href="#_day_13_kotlin"></a><a class="link" href="#_day_13_kotlin">Day 13: kotlin</a></h3>
+<div class="sect3">
+<h4 id="_day_13_transparent_origami"><a class="anchor" href="#_day_13_transparent_origami"></a><a class="link" href="#_day_13_transparent_origami">Day 13: Transparent Origami</a></h4>
+<div class="paragraph">
+<p>This solution is written in Kotlin.</p>
+</div>
+<div class="paragraph">
+<p>The original puzzle can be found at <a href="https://adventofcode.com/2021/day/13" class="bare">https://adventofcode.com/2021/day/13</a></p>
+</div>
+<div class="paragraph">
+<p>For execution enter <em>kotlin day2113_1_2.kts</em> in the command line.</p>
+</div>
+<div class="sect4">
+<h5 id="_first_star_13"><a class="anchor" href="#_first_star_13"></a><a class="link" href="#_first_star_13">First Star</a></h5>
+<div class="paragraph">
+<p>How does it work:<br></p>
+</div>
+<div class="paragraph">
+<p>First the width and the height of the samples is identified. Then a list is set up for a grid, all points which are not included in the samples are marked with ".", all samples are marked with "#".</p>
+</div>
+<div class="paragraph">
+<p>Then the rules for folding are applied, after each folding step the grid is reduced and width or height are adapted. After the first fold the number of marked dots is caluclated for the solution of part 1</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">	// go trough each fold instruction
+	var firstInstruction : Boolean = true
+	foldInstruction.forEach {
+		var instruction = it.split("=")
+		if (instruction[0] == "y") {
+			// do the folding
+			for (y in instruction[1].toInt()..height - 1) {
+				for (x in 0..width - 1) {
+					if (markedPoints[x + y * width] == "#") {
+						markedPoints[x + (instruction[1].toInt() - (y - instruction[1].toInt())) * width] =
+							markedPoints[x + y * width]
+					}
+				}
+			}
+			// create new list
+			height = instruction[1].toInt()
+			for (y in 0..height - 1) {
+				for (x in 0..width - 1) {
+					newMarkedPoints.add(markedPoints[x + y * width])
+				}
+			}
+			// exchange lists
+			markedPoints.clear()
+			markedPoints.addAll(newMarkedPoints)
+			newMarkedPoints.clear()
+
+		} else if (instruction[0] == "x") {
+			// do the folding
+			for (y in 0..height - 1) {
+				for (x in instruction[1].toInt()..width - 1) {
+					if (markedPoints[x + y * width] == "#") {
+						markedPoints[(instruction[1].toInt() - (x - instruction[1].toInt())) + y * width] =
+							markedPoints[x + y * width]
+					}
+				}
+			}
+			// create new list
+			for (y in 0..height - 1) {
+				for (x in 0..instruction[1].toInt() - 1) {
+					newMarkedPoints.add(markedPoints[x + y * width])
+				}
+			}
+			width = instruction[1].toInt()
+			// exchange lists
+			markedPoints.clear()
+			markedPoints.addAll(newMarkedPoints)
+			newMarkedPoints.clear()
+		}
+		if (firstInstruction) {
+				solution1 = markedPoints.count() { it == "#" }
+			firstInstruction = false
+		}
+	}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_second_star_13"><a class="anchor" href="#_second_star_13"></a><a class="link" href="#_second_star_13">Second Star</a></h5>
+<div class="paragraph">
+<p>How does it work:<br></p>
+</div>
+<div class="paragraph">
+<p>Instead of conting all dots after first fold, folding will continue over all instructions and the resulting grid is printed out.</p>
+</div>
+<div class="paragraph">
+<p>At the end, both solutions are printed out.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">// print solution for part 1
+	println("***********************************")
+	println("--- Day 13: Transparent Origami ---")
+	println("***********************************")
+	println("Solution for part1")
+	println("   $solution1 dots are visible after completing just the first fold instruction on your transparent paper")
+	println()
+// print solution for part 2
+	println("***********************************")
+	println("Solution for part2")
+	for (y in 0..height - 1) {
+		for (x in 0..width - 1) {
+			print(markedPoints[x + y * width])
+		}
+		println()
+	}
+	println("   do you use to activate the infrared thermal imaging camera system")
+	println()</code></pre>
+</div>
+</div>
+<a id="day14" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_day_14_kotlin"><a class="anchor" href="#_day_14_kotlin"></a><a class="link" href="#_day_14_kotlin">Day 14: kotlin</a></h3>
+<div class="sect3">
+<h4 id="_day_14_extended_polymerization"><a class="anchor" href="#_day_14_extended_polymerization"></a><a class="link" href="#_day_14_extended_polymerization">Day 14: Extended Polymerization</a></h4>
+<div class="paragraph">
+<p>This solution is written in Kotlin.</p>
+</div>
+<div class="paragraph">
+<p>The original puzzle can be found at <a href="https://adventofcode.com/2021/day/14" class="bare">https://adventofcode.com/2021/day/14</a></p>
+</div>
+<div class="paragraph">
+<p>For execution enter <em>kotlin day2114_1_2.kts</em> in the command line.</p>
+</div>
+<div class="sect4">
+<h5 id="_first_star_14"><a class="anchor" href="#_first_star_14"></a><a class="link" href="#_first_star_14">First Star</a></h5>
+<div class="paragraph">
+<p>How does it work:<br></p>
+</div>
+<div class="paragraph">
+<p>fun poly() will read puzzle input. For each pair of letters in the initial template the rule is applied by building up a new string. After repeating this 10 times, count the occurency of all letters and return max - min.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">fun poly(input1: Int): Int {
+	var rules = mutableMapOf&lt;String, String&gt;()
+	var polyTemp: String = ""
+
+	File("day2114_puzzle_input.txt").forEachLine {
+		if (it != "") {
+			if (!it.contains("-&gt;")) {
+				polyTemp = it
+			} else {
+				var instruction = it.split(" -&gt; ")
+				rules.put(instruction[0], instruction[1])
+			}
+		}
+	}
+
+
+	//iterate input1 number of steps and create new string with replacement of each pair with given rules
+	var newPolyTemp: String = polyTemp.take(1)
+
+	for (i in 1..input1) {
+		for (j in 0..polyTemp.length - 2) {
+			if (rules.containsKey(polyTemp.subSequence(j, j + 2).toString())) {
+				newPolyTemp = newPolyTemp + rules.getValue(polyTemp.subSequence(j, j + 2).toString()) + polyTemp[j + 1]
+			} else
+				newPolyTemp = newPolyTemp + polyTemp[j + 1]
+		}
+		polyTemp = newPolyTemp
+		newPolyTemp = polyTemp.take(1)
+	}
+
+	// count elements and determine max and min value
+	var countMap = mutableMapOf&lt;Char, Int&gt;()
+	polyTemp.forEach {
+		if (countMap.contains(it)) {
+			countMap.set(it, countMap.getValue(it) + 1)
+		} else {
+			countMap.put(it, 1)
+		}
+	}
+
+	var max: Int = 0
+	var min: Int = 10000
+	countMap.forEach {
+		if (it.value &gt; max) {
+			max = it.value
+		} else if (it.value &lt; min) {
+			min = it.value
+		}
+	}
+	return max - min
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_second_star_14"><a class="anchor" href="#_second_star_14"></a><a class="link" href="#_second_star_14">Second Star</a></h5>
+<div class="paragraph">
+<p>How does it work:<br></p>
+</div>
+<div class="paragraph">
+<p>In theory, same function could work, but it takes much to long. So there is fun polyAdv(), each combination of a pair of letters will be stored with it&#8217;s number of occurency and for the next round with applying the rules new pairs are generated. After repeating this 40 times,  count the occurency of all letters and return max - min.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">fun polyAdv(input1: Int): Long {
+
+	var rules = mutableMapOf&lt;String, String&gt;()
+	var polyTemp: String = ""
+
+	File("day2114_puzzle_input.txt").forEachLine {
+		if (it != "") {
+			if (!it.contains("-&gt;")) {
+				polyTemp = it
+			} else {
+				var instruction = it.split(" -&gt; ")
+				rules.put(instruction[0], instruction[1])
+			}
+		}
+	}
+
+	//setup Map with subSequences and counter for occurency
+	var polyPairs = mutableMapOf&lt;String, Long&gt;()
+	var newPolyPairs = mutableMapOf&lt;String, Long&gt;()
+
+	polyPairs.put(polyTemp.takeLast(1), 1)
+	for (j in 0..polyTemp.length - 2) {
+		if (polyPairs.containsKey(polyTemp.subSequence(j, j + 2).toString())) {
+			polyPairs.set(
+				polyTemp.subSequence(j, j + 2).toString(),
+				polyPairs.getValue(polyTemp.subSequence(j, j + 2).toString()) + 1
+			)
+		} else {
+			polyPairs.put(polyTemp.subSequence(j, j + 2).toString(), 1)
+		}
+	}
+
+	// iterate input1 number of steps and determine, how many new sequences will be created for the current step
+	for (i in 1..input1) {
+		polyPairs.forEach {
+			if (rules.contains(it.key)) {
+
+				var new1 = it.key.take(1) + rules.getValue(it.key)
+				var new2 = rules.getValue(it.key) + it.key.takeLast(1)
+
+				if (newPolyPairs.containsKey(new1)) {
+					newPolyPairs.put(
+						new1,
+						newPolyPairs.getValue(new1) + it.value
+					)
+				} else {
+					newPolyPairs.put(new1, it.value)
+				}
+				if (newPolyPairs.containsKey(new2)) {
+					newPolyPairs.put(new2, newPolyPairs.getValue(new2) + it.value)
+				} else {
+					newPolyPairs.put(new2, it.value)
+				}
+			} else {
+				newPolyPairs.put(it.key, it.value)
+			}
+		}
+		polyPairs.clear()
+		polyPairs.putAll(newPolyPairs)
+		newPolyPairs.clear()
+	}
+
+	// count elements and determine max and min value
+	var countMap = mutableMapOf&lt;String, Long&gt;()
+
+	for ((key, value) in polyPairs) {
+		if (countMap.contains(key.take(1))) {
+			countMap.set(key.take(1), countMap.getValue(key.take(1)) + value)
+		} else {
+			countMap.put(key.take(1), value)
+		}
+	}
+
+	var max: Long = countMap.getValue(polyTemp.take(1))
+	var min: Long = countMap.getValue(polyTemp.take(1))
+
+	countMap.forEach {
+		if (it.value &gt; max) {
+			max = it.value
+		} else if (it.value &lt; min) {
+			min = it.value
+		}
+	}
+
+	return (max - min)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At the end, both solutions are printed out.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight linenums"><code class="language-kotlin" data-lang="kotlin">// print solution for part 1
+	println("****************************************")
+	println("--- Day  14: Extended Polymerization ---")
+	println("****************************************")
+	println("Solution for part1")
+	println("   $solution1 you get if you take the quantity of the most common element and subtract the quantity of the least common element")
+	println()
+// print solution for part 2
+	println("*******************************")
+	println("Solution for part2")
+	println("   $solution2 you get if you take the quantity of the most common element and subtract the quantity of the least common element")
+	println()</code></pre>
 </div>
 </div>
 </div>
