@@ -1,5 +1,5 @@
 [package]
-name = "mr-kaffee-2021-07"
+name = "mr-kaffee-2021-15"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,4 +8,4 @@ edition = "2021"
 [dependencies]
 
 [features]
-direct_solution = []
+dijkstra = []
